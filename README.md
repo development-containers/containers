@@ -4,13 +4,13 @@ Do you want to have a linux dev setup like everybody else will only have in 10 y
 Here you go:
 
 ```
-podman run --pull=always --rm -it ghcr.io/development-containers/alpine:latest
+podman run --pull=always --rm -it ghcr.io/development-containers/fedora:latest
 ```
 
 or if you are on a legacy operating system:
 
 ```
-docker run --pull=always --rm -it ghcr.io/development-containers/alpine:latest
+docker run --pull=always --rm -it ghcr.io/development-containers/fedora:latest
 ```
 
 This repo contains containerfile for contains with all the devtools you
@@ -38,7 +38,7 @@ For an example see this table:
 ### Programming languages
 - rust (inc. rustup and rust-analyzer)
 - nushell
-- python
+- kotlin
 - gleam
 - deno
 
@@ -55,6 +55,8 @@ For an example see this table:
 - ripgrep
 - bottom
 - mprocs
+- cuelang
+- zola
 
 ### Editors
 - helix
