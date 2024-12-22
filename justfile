@@ -15,3 +15,8 @@ _build name:
 
 _push name:
     docker push {{repo}}/{{name}}
+
+
+_build_and_push name: (_build name) (_push name)
+
+ci: (_build_and_push "alpine")
