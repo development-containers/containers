@@ -1,13 +1,13 @@
 FROM fedora:41 as base
 
 RUN dnf update -y && \
-    dnf install -y rust-analyzer sqlite rustup nu helix curl git rustup just eza ripgrep fd python3 bash difftastic unar 7z unzip htop cmake elixir erlang openssl-devel java-latest-openjdk
+    dnf install -y rust-analyzer sqlite rustup helix curl git rustup just eza ripgrep fd python3 bash difftastic unar 7z unzip htop cmake elixir erlang openssl-devel java-latest-openjdk bat tokei hexyl age
 
 FROM base AS builder
 RUN dnf update -y && dnf install -y unar
 
 # unpack nushell
-ADD --checksum=sha256:7bcd2c64bc7028f8cdbb25f2f84d61b3c9418ce6c39e13c7f010d412f1e8711e https://github.com/nushell/nushell/releases/download/0.100.0/nu-0.100.0-x86_64-unknown-linux-gnu.tar.gz  /nu.tar.gz
+ADD --checksum=sha256:7149728c779b5d7e7f86e34f36fd31332f7677df3e9a47b5744a1e1756d3ce76 https://github.com/nushell/nushell/releases/download/0.101.0/nu-0.101.0-x86_64-unknown-linux-gnu.tar.gz  /nu.tar.gz
 RUN mkdir /opt/nushell && unar /nu.tar.gz -o /tmp/nu && mv /tmp/nu/**/* /opt/nushell
 
 #unpack typst
@@ -45,8 +45,6 @@ RUN mkdir /opt/zola && unar /zola.tar.gz -o /tmp/zola && mv /tmp/zola/* /opt/zol
 
 
 FROM base
-
-
 COPY --from=builder /opt/ /opt/
 ENV PATH="$PATH:/opt/nushell/:/opt/helix:/opt/typst:/opt/zellij:/opt/starship:/opt/deno:/opt/intellij/bin:/opt/cuelang:/opt/gleam:/opt/zola"
 
@@ -60,4 +58,5 @@ ENV VISUAL="hx"
 # TODO: enable starship in nu
 # TODO: rebar3 https://rebar3.org/docs/getting-started/
 # TODO: kotlin
+# TODO: setup difftastic for git
 ENTRYPOINT [ "sh", "-l", "-c", "zellij"]

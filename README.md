@@ -57,6 +57,10 @@ For an example see this table:
 - mprocs
 - cuelang
 - zola
+- tokei
+- bat
+- hexyl
+- age
 
 ### Editors
 - helix
