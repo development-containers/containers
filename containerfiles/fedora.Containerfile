@@ -1,7 +1,9 @@
 FROM fedora:41 as base
 
 RUN dnf update -y && \
-    dnf install -y rust-analyzer sqlite rustup helix curl git rustup just eza ripgrep fd python3 bash difftastic unar 7z unzip htop cmake elixir erlang openssl-devel java-latest-openjdk bat tokei hexyl age
+    dnf install -y rust-analyzer sqlite rustup helix curl git rustup just \
+    eza ripgrep fd python3 bash difftastic unar 7z unzip htop cmake elixir \
+    erlang openssl-devel java-latest-openjdk bat tokei hexyl age tree
 
 FROM base AS builder
 RUN dnf update -y && dnf install -y unar
@@ -19,15 +21,15 @@ ADD --checksum=sha256:b1c321a817d8a5baf55c2798f6ac7495bba925d686d9877e9604a50784
 RUN mkdir /opt/zellij && unar /zellij.tar.xz -o /tmp/zellij && mv /tmp/zellij/* /opt/zellij
 
 # unpack cuelang
-ADD --checksum=sha256:60c46ec5b90190c22a96ab3529ad363d03b687331bbeb6d7d8097a2983d7716d https://github.com/cue-lang/cue/releases/download/v0.11.1/cue_v0.11.1_linux_amd64.tar.gz cue.tar.gz
+ADD --checksum=sha256:60c46ec5b90190c22a96ab3529ad363d03b687331bbeb6d7d8097a2983d7716d https://github.com/cue-lang/cue/releases/download/v0.11.1/cue_v0.11.1_linux_amd64.tar.gz /cue.tar.gz
 RUN mkdir /opt/cuelang && unar /cue.tar.gz -o /tmp/cue && mv /tmp/cue/cue/* /opt/cuelang
 
 # unpack gleam
-ADD --checksum=sha256:db9c07b41d8aacf4cd7235efba438af1a5dadefd94f1a6e08534d247d883bc88 https://github.com/gleam-lang/gleam/releases/download/v1.6.3/gleam-v1.6.3-x86_64-unknown-linux-musl.tar.gz gleam.tar.gz
+ADD --checksum=sha256:db9c07b41d8aacf4cd7235efba438af1a5dadefd94f1a6e08534d247d883bc88 https://github.com/gleam-lang/gleam/releases/download/v1.6.3/gleam-v1.6.3-x86_64-unknown-linux-musl.tar.gz /gleam.tar.gz
 RUN mkdir /opt/gleam && unar /gleam.tar.gz -o /tmp/gleam && mv /tmp/gleam/* /opt/gleam
 
 # unpack starship
-ADD --checksum=sha256:744e21eb2e61b85b0c11378520ebb9e94218de965bca5b8c2266f6c3e23ff5be https://github.com/starship/starship/releases/download/v1.21.1/starship-x86_64-unknown-linux-musl.tar.gz starship.tar.gz
+ADD --checksum=sha256:744e21eb2e61b85b0c11378520ebb9e94218de965bca5b8c2266f6c3e23ff5be https://github.com/starship/starship/releases/download/v1.21.1/starship-x86_64-unknown-linux-musl.tar.gz /starship.tar.gz
 RUN mkdir /opt/starship && unar /starship.tar.gz -o /tmp/starship && mv /tmp/starship/* /opt/starship
 
 #unpack intelij
@@ -46,6 +48,7 @@ RUN mkdir /opt/zola && unar /zola.tar.gz -o /tmp/zola && mv /tmp/zola/* /opt/zol
 
 FROM base
 COPY --from=builder /opt/ /opt/
+COPY ./filesystem/config /root/.config
 ENV PATH="$PATH:/opt/nushell/:/opt/helix:/opt/typst:/opt/zellij:/opt/starship:/opt/deno:/opt/intellij/bin:/opt/cuelang:/opt/gleam:/opt/zola"
 
 RUN rustup-init -y 
@@ -55,7 +58,7 @@ ENV SHELL="nu"
 ENV EDITOR="hx"
 ENV VISUAL="hx"
 
-# TODO: enable starship in nu
+# TODO: configure starship prompt to be *fancy*
 # TODO: rebar3 https://rebar3.org/docs/getting-started/
 # TODO: kotlin
 # TODO: setup difftastic for git

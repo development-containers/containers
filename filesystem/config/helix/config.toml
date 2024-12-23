@@ -1,0 +1,15 @@
+theme = "jellybeans"
+
+[editor]
+bufferline = "multiple"
+color-modes = true
+
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+
+[editor.soft-wrap]
+enable = true
