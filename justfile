@@ -19,9 +19,17 @@ _build_and_push name: (_build name) (_push name)
 
 
 # build and enter a container
-test name: (_build name) (_run name)
+try name: (_build name) (_run name)
 
-ci: (_build_and_push "fedora")
+
+# run a command in a new docker container
+_run_command name cmd:
+    docker run --entrypoint 'bash' --rm {{repo}}/{{name}} -l -c '{{cmd}}'
+
+# build image and run some smoketests against it
+test name: (_build name) (_run_command name 'cd /examples/kotlin-example-project && ./gradlew build') (_run_command name 'cd / && cargo new test-project && cd test-project && cargo run')
+
+ci: (_build "fedora") (test "fedora") (_push "fedora")
 
 
 # clean up docker cache
