@@ -4,13 +4,12 @@ RUN dnf update -y && \
     dnf install -y rust-analyzer sqlite rustup helix curl git rustup just \
     eza ripgrep fd python3 bash difftastic unar 7z unzip htop cmake elixir \
     erlang openssl-devel java-latest-openjdk bat tokei hexyl age tree \
-    rakudo wget && \
+    rakudo wget racket pandoc && \
     dnf clean all
 
 # ----------------------------------------------------------------------------------------------------------
 
 FROM base AS builder
-RUN dnf update -y && dnf install -y unar
 
 ENV NUSHELL_VERSION=0.101.0
 ENV TYPST_VERSION=0.12.0
@@ -68,6 +67,10 @@ RUN mkdir /opt/nickel && mv /nickel /opt/nickel/nickel && chmod +x /opt/nickel/n
 #unpack taplo
 ADD --checksum=sha256:889efcfa067b179fda488427d3b13ce2d679537da8b9ed8138ba415db7da2a5e https://github.com/tamasfe/taplo/releases/download/${TAPLO_VERSION}/taplo-linux-x86_64.gz /taplo.gz
 RUN mkdir /opt/taplo &&  unar /taplo.gz -o /opt/taplo/ && chmod +x /opt/taplo/taplo
+
+
+# to consider: pony
+
 # ----------------------------------------------------------------------------------------------------------
 
 FROM base
@@ -78,7 +81,7 @@ COPY ./filesystem/examples /examples
 ENV PATH="$PATH:/opt/nushell/:/opt/helix:/opt/typst:/opt/zellij:/opt/starship:/opt/deno:/opt/intellij/bin:/opt/cuelang:/opt/gleam:/opt/zola:/opt/nickel:/opt/taplo"
 
 RUN rustup-init -y 
-# RUN sh -l -c "cargo install --locked mprocs"
+RUN sh -l -c "cargo install --locked nickel-lang-lsp"
 
 ENV SHELL="nu"
 ENV EDITOR="hx"
@@ -88,4 +91,10 @@ ENV VISUAL="hx"
 # TODO: rebar3 https://rebar3.org/docs/getting-started/
 # TODO: kotlin
 # TODO: setup difftastic for git
+# TODO: lume example project
+# TODO: kotlin spring example project
+# TODO: nickel and cuelang example files
+# TODO: typst example file
+# TODO: script that checks if any of the tools we install manually have newer versions available
+
 ENTRYPOINT [ "sh", "-l", "-c", "zellij"]
