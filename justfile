@@ -36,3 +36,7 @@ ci: (_build "fedora") (test "fedora") (_push "fedora")
 clear_docker_cache:
     docker image prune -f
     docker builder prune -f
+
+test-podman:
+    mkdir -p ~/.config/containers
+    printf '[storage]\ndriver="overlay"\nrootless_storage_path="/tmp/storage"\n' > ~/.config/containers/storage.conf

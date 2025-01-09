@@ -1,10 +1,10 @@
-FROM fedora:41 AS base
+FROM registry.fedoraproject.org/fedora:41 AS base
 
 RUN dnf update -y && \
     dnf install -y rust-analyzer sqlite rustup helix curl git rustup just \
     eza ripgrep fd python3 bash difftastic unar 7z unzip htop cmake elixir \
     erlang openssl-devel java-latest-openjdk bat tokei hexyl age tree \
-    rakudo wget racket pandoc && \
+    rakudo wget racket pandoc podman docker && \
     dnf clean all
 
 # ----------------------------------------------------------------------------------------------------------
@@ -21,6 +21,7 @@ ENV DENO_VERSION=2.1.4
 ENV ZOLA_VERSION=0.19.2
 ENV NICKEL_VERSION=1.9.1
 ENV TAPLO_VERSION=0.9.3
+ENV CARAPACE_VERSION=1.1.1
 
 # unpack nushell
 ADD --checksum=sha256:7149728c779b5d7e7f86e34f36fd31332f7677df3e9a47b5744a1e1756d3ce76 https://github.com/nushell/nushell/releases/download/${NUSHELL_VERSION}/nu-${NUSHELL_VERSION}-x86_64-unknown-linux-gnu.tar.gz  /nu.tar.gz
@@ -69,6 +70,11 @@ ADD --checksum=sha256:889efcfa067b179fda488427d3b13ce2d679537da8b9ed8138ba415db7
 RUN mkdir /opt/taplo &&  unar /taplo.gz -o /opt/taplo/ && chmod +x /opt/taplo/taplo
 
 
+#unpack carapace
+ADD --checksum=sha256:0f716792571b318d9c86ebc8b4db6d05972ce5def5d42c8646f0ba4e899a0794 https://github.com/carapace-sh/carapace-bin/releases/download/v${CARAPACE_VERSION}/carapace-bin_1.1.1_linux_amd64.tar.gz /carapace.tar.gz
+RUN mkdir /opt/carapace &&  unar /carapace.tar.gz -o /tmp/carapace/ && mv /tmp/carapace/carapace/* /opt/carapace
+
+
 # to consider: pony
 
 # ----------------------------------------------------------------------------------------------------------
@@ -78,7 +84,7 @@ COPY --from=builder /opt/ /opt/
 COPY ./filesystem/config /root/.config
 COPY ./filesystem/examples /examples
 
-ENV PATH="$PATH:/opt/nushell/:/opt/helix:/opt/typst:/opt/zellij:/opt/starship:/opt/deno:/opt/intellij/bin:/opt/cuelang:/opt/gleam:/opt/zola:/opt/nickel:/opt/taplo"
+ENV PATH="$PATH:/opt/nushell/:/opt/helix:/opt/typst:/opt/zellij:/opt/starship:/opt/deno:/opt/intellij/bin:/opt/cuelang:/opt/gleam:/opt/zola:/opt/nickel:/opt/taplo:/opt/carapace"
 
 RUN rustup-init -y 
 RUN sh -l -c "cargo install --locked nickel-lang-lsp"

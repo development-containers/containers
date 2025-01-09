@@ -1,0 +1,22 @@
+{
+	"name": "fedora",
+	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
+	"image": "ghcr.io/development-containers/fedora:latest",
+	"mounts": [
+		"source=/sys/fs/cgroup,target=/sys/fs/cgroup,type=bind,consistency=cached"
+	  ],
+	// // Features to add to the dev container. More info: https://containers.dev/features.
+	// "features": {
+	// },
+	"privileged": true, // needed for podman to work . TODO: is there a way to do this without privileged?
+	"containerUser": "root",
+	"remoteUser": "root"
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	// "forwardPorts": [],
+
+	// Configure tool-specific properties.
+	// "customizations": {},
+
+	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+	// "remoteUser": "root"
+}
