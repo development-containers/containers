@@ -6,9 +6,10 @@ RUN apt update && \
 
 # install from builder
 COPY --from=opt /opt/ /opt/
-COPY ./filesystem/config /root/.config
 COPY ./filesystem/examples /examples
 
+USER codespace
+COPY ./filesystem/config ~/.config
 ENV PATH="$PATH:/opt/nushell/:/opt/helix:/opt/typst:/opt/zellij:/opt/starship:/opt/deno:/opt/intellij/bin:/opt/cuelang:/opt/gleam:/opt/zola:/opt/nickel:/opt/taplo:/opt/carapace"
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --default-toolchain stable -y
 RUN pipx install rust-just

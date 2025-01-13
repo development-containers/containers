@@ -8,6 +8,7 @@ _default:
 _run name:
     docker run --rm -it {{repo}}/{{name}}
 
+# Build the container that has all our custom software in /opt
 _build_opt:
      docker build -t opt -f containerfiles/opt.Containerfile .
 

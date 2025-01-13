@@ -15,7 +15,7 @@ ENV TAPLO_VERSION=0.9.3
 ENV CARAPACE_VERSION=1.1.1
 
 # unpack nushell
-ADD --checksum=sha256:7149728c779b5d7e7f86e34f36fd31332f7677df3e9a47b5744a1e1756d3ce76 https://github.com/nushell/nushell/releases/download/${NUSHELL_VERSION}/nu-${NUSHELL_VERSION}-x86_64-unknown-linux-gnu.tar.gz  /nu.tar.gz
+ADD --checksum=sha256:9d316709c29777f2bdf81d455fc74c54af3bbf61038d409eb8f147931ff03762 https://github.com/nushell/nushell/releases/download/${NUSHELL_VERSION}/nu-${NUSHELL_VERSION}-x86_64-unknown-linux-musl.tar.gz  /nu.tar.gz
 RUN mkdir /opt/nushell && unar /nu.tar.gz -o /tmp/nu && mv /tmp/nu/**/* /opt/nushell
 
 #unpack typst

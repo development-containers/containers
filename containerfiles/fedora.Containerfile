@@ -12,7 +12,7 @@ COPY --from=opt /opt/ /opt/
 COPY ./filesystem/config /root/.config
 COPY ./filesystem/examples /examples
 
-ENV PATH="$PATH:/opt/nushell/:/opt/helix:/opt/typst:/opt/zellij:/opt/starship:/opt/deno:/opt/intellij/bin:/opt/cuelang:/opt/gleam:/opt/zola:/opt/nickel:/opt/taplo:/opt/carapace"
+ENV PATH="$PATH:/opt/nushell/:/opt/typst:/opt/zellij:/opt/starship:/opt/deno:/opt/intellij/bin:/opt/cuelang:/opt/gleam:/opt/zola:/opt/nickel:/opt/taplo:/opt/carapace"
 
 RUN rustup-init -y 
 RUN sh -l -c "cargo install --locked nickel-lang-lsp"
