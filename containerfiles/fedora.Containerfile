@@ -14,12 +14,15 @@ COPY ./filesystem/examples /examples
 
 ENV PATH="$PATH:/opt/nushell/:/opt/typst:/opt/zellij:/opt/starship:/opt/deno:/opt/intellij/bin:/opt/cuelang:/opt/gleam:/opt/zola:/opt/nickel:/opt/taplo:/opt/carapace"
 
-RUN rustup-init -y 
-RUN sh -l -c "cargo install --locked nickel-lang-lsp"
 
 ENV SHELL="nu"
 ENV EDITOR="hx"
 ENV VISUAL="hx"
+
+RUN rustup-init -y 
+RUN sh -l -c "cargo install --locked nickel-lang-lsp"
+
+
 
 # TODO: configure starship prompt to be *fancy*
 # TODO: rebar3 https://rebar3.org/docs/getting-started/
