@@ -31,7 +31,7 @@ _run_command name cmd:
     docker run --entrypoint 'bash' --rm {{repo}}/{{name}} -l -c '{{cmd}}'
 
 # build image and run some smoketests against it
-test name: (_build name) (_run_command name 'for script in /examples/tests/*; do "$script"; done') 
+test name: (_build name) (_run_command name 'set -xeuo pipefail; for script in /examples/tests/*; do "$script"; done') 
 
 # clean up docker cache
 clear_docker_cache:
