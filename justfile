@@ -28,11 +28,10 @@ try name: (_build name) (_run name)
 
 # run a command in a new docker container
 _run_command name cmd:
-    docker run --entrypoint 'nu' --rm {{repo}}/{{name}} -c '{{cmd}}'
+    docker run --entrypoint 'bash' --rm {{repo}}/{{name}} -l -c '{{cmd}}'
 
 # build image and run some smoketests against it
-test name: (_build name) (_run_command name 'cd /examples/kotlin-example-project; ./gradlew build') (_run_command name 'cd /examples; cargo new test-project; cd test-project; cargo run') (_run_command name '/examples/version-check.nu')
-
+test name: (_build name) (_run_command name 'for script in /examples/tests/*; do "$script"; done') 
 
 # clean up docker cache
 clear_docker_cache:
