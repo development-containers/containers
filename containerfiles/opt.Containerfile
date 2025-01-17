@@ -13,6 +13,11 @@ ENV ZOLA_VERSION=0.19.2
 ENV NICKEL_VERSION=1.9.1
 ENV TAPLO_VERSION=0.9.3
 ENV CARAPACE_VERSION=1.1.1
+ENV JUJUTSU_VERSION=0.25.0
+
+#unpack jujutsu
+ADD --checksum=sha256:4783b6c9debc0ead3aa218fd2c224029e233f8793e611e9c0fa80d7d1b70de37 https://github.com/jj-vcs/jj/releases/download/v${JUJUTSU_VERSION}/jj-v${JUJUTSU_VERSION}-aarch64-unknown-linux-musl.tar.gz /jj.tar.gz
+RUN mkdir /opt/jujutsu && unar /jj.tar.gz -o /tmp/jujutsu && mv /tmp/jujutsu/**/* /opt/jujutsu
 
 # unpack nushell
 ADD --checksum=sha256:9d316709c29777f2bdf81d455fc74c54af3bbf61038d409eb8f147931ff03762 https://github.com/nushell/nushell/releases/download/${NUSHELL_VERSION}/nu-${NUSHELL_VERSION}-x86_64-unknown-linux-musl.tar.gz  /nu.tar.gz

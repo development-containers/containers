@@ -36,6 +36,7 @@ let versions2 = [
     (x starship starship)
     (x denoland deno)
     (x getzola zola)
+    (x jj-vcs jj)
 ]
 
 let versions = $versions1 | append $versions2
