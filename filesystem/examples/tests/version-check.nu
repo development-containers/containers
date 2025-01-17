@@ -4,6 +4,7 @@
 
 
 def github_version (proj: string) : any -> string {
+    print $"Fetching latest version from github for ($proj)"
     sleep 5sec
     http get $"https://api.github.com/repos/($proj)/releases/latest" | get tag_name | str trim --left --char=v
 }
@@ -14,7 +15,12 @@ def filter_version () : string -> string {
 }
 
 def get_local_version (cmd: string) : any -> string {
-    run-external $cmd '--version' | lines | first | filter_version
+    try {
+        run-external $cmd '--version' | lines | first | filter_version
+    } catch { |err|
+        print $"Running ($cmd) failed: ($err.msg)"
+        "error"
+    }
 }
 
 
