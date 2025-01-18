@@ -6,9 +6,9 @@ ENV NUSHELL_VERSION=0.101.0
 ENV TYPST_VERSION=0.12.0
 ENV ZELLIJ_VERSION=0.41.2
 ENV CUELANG_VERSION=0.11.1
-ENV GLEAM_VERSION=1.6.3
-ENV STARSHIP_VERSION=1.21.1
-ENV DENO_VERSION=2.1.4
+ENV GLEAM_VERSION=1.7.0
+ENV STARSHIP_VERSION=1.22.1
+ENV DENO_VERSION=2.1.6
 ENV ZOLA_VERSION=0.19.2
 ENV NICKEL_VERSION=1.9.1
 ENV TAPLO_VERSION=0.9.3
@@ -36,11 +36,11 @@ ADD --checksum=sha256:60c46ec5b90190c22a96ab3529ad363d03b687331bbeb6d7d8097a2983
 RUN mkdir /opt/cuelang && unar /cue.tar.gz -o /tmp/cue && mv /tmp/cue/cue/* /opt/cuelang
 
 # unpack gleam
-ADD --checksum=sha256:db9c07b41d8aacf4cd7235efba438af1a5dadefd94f1a6e08534d247d883bc88 https://github.com/gleam-lang/gleam/releases/download/v${GLEAM_VERSION}/gleam-v${GLEAM_VERSION}-x86_64-unknown-linux-musl.tar.gz /gleam.tar.gz
+ADD --checksum=sha256:b5fc6e6b9b8e8ebeeda3b9be60503d93b409d437d9f4595b4d5c9e1449c14f49 https://github.com/gleam-lang/gleam/releases/download/v${GLEAM_VERSION}/gleam-v${GLEAM_VERSION}-x86_64-unknown-linux-musl.tar.gz /gleam.tar.gz
 RUN mkdir /opt/gleam && unar /gleam.tar.gz -o /tmp/gleam && mv /tmp/gleam/* /opt/gleam
 
 # unpack starship
-ADD --checksum=sha256:744e21eb2e61b85b0c11378520ebb9e94218de965bca5b8c2266f6c3e23ff5be https://github.com/starship/starship/releases/download/v${STARSHIP_VERSION}/starship-x86_64-unknown-linux-musl.tar.gz /starship.tar.gz
+ADD --checksum=sha256:62c91b5ecc7f8c8c6ea7ffea42a98bd2e6a2d29daf61562fac04daece18a6461 https://github.com/starship/starship/releases/download/v${STARSHIP_VERSION}/starship-x86_64-unknown-linux-musl.tar.gz /starship.tar.gz
 RUN mkdir /opt/starship && unar /starship.tar.gz -o /tmp/starship && mv /tmp/starship/* /opt/starship
 
 #unpack intelij
@@ -49,7 +49,7 @@ RUN mkdir /opt/starship && unar /starship.tar.gz -o /tmp/starship && mv /tmp/sta
 # RUN mkdir /opt/intellij && unar /intellij.tar.gz -o /tmp/intellij && mv /tmp/intellij/**/* /opt/intellij
 
 #unpack deno
-ADD --checksum=sha256:54a81939cccb2af114c4d0a68a554cf4a04b1f08728e70f663f83781de19d785 https://github.com/denoland/deno/releases/download/v${DENO_VERSION}/deno-x86_64-unknown-linux-gnu.zip /deno.zip
+ADD --checksum=sha256:8cd5433baf9642380110b1f1ee03f4740aa8d2b470953e5cb40de1bbc9fcbd5d https://github.com/denoland/deno/releases/download/v${DENO_VERSION}/deno-x86_64-unknown-linux-gnu.zip /deno.zip
 RUN mkdir /opt/deno && unar /deno.zip -o /tmp/deno && mv /tmp/deno/* /opt/deno
 
 #unpack zola
