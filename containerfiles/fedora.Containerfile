@@ -1,6 +1,8 @@
 FROM registry.fedoraproject.org/fedora:41 
 
-RUN dnf update -y && \
+
+RUN dnf install -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm && \
+    dnf update -y && \
     dnf install -y rust-analyzer sqlite rustup helix curl git rustup just \
     eza ripgrep fd python3 bash difftastic unar 7z unzip htop cmake elixir \
     erlang openssl-devel java-latest-openjdk bat tokei hexyl age tree \
@@ -32,6 +34,5 @@ RUN sh -l -c "cargo install --locked nickel-lang-lsp"
 # TODO: kotlin spring example project
 # TODO: nickel and cuelang example files
 # TODO: typst example file
-# TODO: script that checks if any of the tools we install manually have newer versions available
 
 ENTRYPOINT [ "sh", "-l", "-c", "zellij"]

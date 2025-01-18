@@ -45,6 +45,9 @@ let versions2 = [
     (x jj-vcs jj)
 ]
 
+
+# todo rg fd bat
+
 let versions = $versions1 | append $versions2
 
 
