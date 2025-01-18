@@ -1,6 +1,6 @@
 #!/usr/bin/env nu
 
 cd /examples
-cargo new test-project
-cd test-project
+cargo new rust-test-project
+cd rust-test-project
 cargo run

@@ -2,7 +2,7 @@ FROM mcr.microsoft.com/devcontainers/universal
 
 RUN apt update && \
     apt upgrade -y && \
-    apt install -y sqlite3 curl git ripgrep fd-find python3 bash clang pkg-config build-essential libssl-dev unar
+    apt install -y sqlite3 curl git ripgrep fd-find python3 bash clang pkg-config build-essential libssl-dev unar erlang
 
 # install from builder
 COPY --from=opt /opt/ /opt/
