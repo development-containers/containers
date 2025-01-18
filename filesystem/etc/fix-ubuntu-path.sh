@@ -20,7 +20,7 @@ do
     echo "$i"
     path_statement "$i" >> /etc/bash.bashrc
     path_statement "$i" >> /home/codespace/.bashrc
-        path_statement "$i" >> /home/codespace/.profile
+    path_statement "$i" >> /home/codespace/.profile
 
 done
 

@@ -16,7 +16,7 @@ ENV CARAPACE_VERSION=1.1.1
 ENV JUJUTSU_VERSION=0.25.0
 
 #unpack jujutsu
-ADD --checksum=sha256:4783b6c9debc0ead3aa218fd2c224029e233f8793e611e9c0fa80d7d1b70de37 https://github.com/jj-vcs/jj/releases/download/v${JUJUTSU_VERSION}/jj-v${JUJUTSU_VERSION}-aarch64-unknown-linux-musl.tar.gz /jj.tar.gz
+ADD --checksum=sha256:56cf8d80043bc5165919b5b47c5763f5e741313931ca07bad8443704a7ecd180 https://github.com/jj-vcs/jj/releases/download/v${JUJUTSU_VERSION}/jj-v${JUJUTSU_VERSION}-x86_64-unknown-linux-musl.tar.gz /jj.tar.gz
 RUN mkdir /opt/jujutsu && unar /jj.tar.gz -o /tmp/jujutsu && mv /tmp/jujutsu/**/* /opt/jujutsu
 
 # unpack nushell
