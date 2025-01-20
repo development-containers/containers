@@ -1,0 +1,13 @@
+_default:
+    @just --list
+
+
+build:
+    deno task build
+
+
+serve:
+    deno task serve
+
+clean:
+    rm -r _site
