@@ -1,5 +1,5 @@
 repo := "ghcr.io/development-containers"
-podman := `nu -c "if ((podman --version | parse --regex '([a-zA-Z ]*)(?<major>\d)\..*'| get major.0 | into int) >= 5) {print 'podman'} else { print 'docker'}"`
+podman := `bash -c ' [[ "$(podman --version)" =~ ^[a-zA-Z[:space:]]+[5-9].*$ ]] && echo "podman" || echo "docker"'`
 
 warn := if podman != "podman" {`echo "WARNING: Yikes! That's an old OLD operating system you go there. Please upgrade to something wiht podman 5. Falling back to docker." >&2`} else {""}
 
