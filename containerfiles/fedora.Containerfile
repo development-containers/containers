@@ -1,4 +1,5 @@
-FROM registry.fedoraproject.org/fedora:41 
+#FROM registry.fedoraproject.org/fedora:41 
+FROM quay.io/podman/stable
 
 
 RUN dnf install -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm && \
@@ -6,7 +7,7 @@ RUN dnf install -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-rele
     dnf install -y rust-analyzer sqlite rustup helix curl git rustup just \
     eza ripgrep fd python3 bash difftastic unar 7z unzip htop cmake elixir \
     openssl-devel java-latest-openjdk bat tokei hexyl age tree nodejs-bash-language-server \
-    rakudo wget racket pandoc podman docker shellcheck && \
+    rakudo wget racket pandoc shellcheck erlang && \
     dnf clean all
 
 # ------

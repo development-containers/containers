@@ -1,5 +1,7 @@
 {
 	"name": "tmpcontainer",
 	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-	"image": "ghcr.io/development-containers/ubuntu:latest"
+	"image": "ghcr.io/development-containers/fedora:latest",
+    //"image": "quay.io/podman/stable",
+	"privileged": true
 }
