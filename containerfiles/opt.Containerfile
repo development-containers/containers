@@ -69,3 +69,8 @@ RUN mkdir /opt/taplo &&  unar /taplo.gz -o /opt/taplo/ && chmod +x /opt/taplo/ta
 #unpack carapace
 ADD --checksum=sha256:0f716792571b318d9c86ebc8b4db6d05972ce5def5d42c8646f0ba4e899a0794 https://github.com/carapace-sh/carapace-bin/releases/download/v${CARAPACE_VERSION}/carapace-bin_1.1.1_linux_amd64.tar.gz /carapace.tar.gz
 RUN mkdir /opt/carapace &&  unar /carapace.tar.gz -o /tmp/carapace/ && mv /tmp/carapace/carapace/* /opt/carapace
+
+
+#unpack rebar3
+ADD --checksum=sha256:d2d31cfb98904b8e4917300a75f870de12cb5167cd6214d1043e973a56668a54 https://github.com/erlang/rebar3/releases/download/3.24.0/rebar3 /opt/rebar3/rebar3
+RUN chmod +x /opt/rebar3/rebar3

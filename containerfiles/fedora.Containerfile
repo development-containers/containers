@@ -7,7 +7,7 @@ RUN dnf install -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-rele
     dnf install -y rust-analyzer sqlite rustup helix curl git rustup just \
     eza ripgrep fd python3 bash difftastic unar 7z unzip htop cmake elixir \
     openssl-devel java-latest-openjdk bat tokei hexyl age tree nodejs-bash-language-server \
-    rakudo wget racket pandoc shellcheck erlang erlang-rebar3 && \
+    rakudo wget racket pandoc shellcheck erlang && \
     dnf clean all
 
 # ------
@@ -15,7 +15,7 @@ COPY --from=opt /opt/ /opt/
 COPY ./filesystem/config /root/.config
 COPY ./filesystem/examples /examples
 
-ENV PATH="$PATH:/opt/nushell/:/opt/jujutsu:/opt/typst:/opt/zellij:opt/typst:/opt/starship:/opt/deno:/opt/intellij/bin:/opt/cuelang:/opt/gleam:/opt/zola:/opt/nickel:/opt/taplo:/opt/carapace"
+ENV PATH="$PATH:/opt/nushell/:/opt/jujutsu:/opt/typst:/opt/zellij:opt/typst:/opt/starship:/opt/deno:/opt/intellij/bin:/opt/cuelang:/opt/gleam:/opt/zola:/opt/nickel:/opt/taplo:/opt/carapace:/opt/rebar3"
 
 
 ENV SHELL="nu"
