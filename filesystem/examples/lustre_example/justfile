@@ -1,0 +1,12 @@
+_default:
+    @just --list
+
+
+test:
+    gleam test
+
+serve:
+    gleam run -m lustre/dev start
+
+clean:
+    rm -r build
