@@ -1,4 +1,5 @@
 #!/bin/bash
-set -euo pipefail
+set -xeuo pipefail
 
 env
+cat /etc/*-release

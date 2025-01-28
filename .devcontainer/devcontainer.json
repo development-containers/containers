@@ -3,5 +3,16 @@
 	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
 	"image": "ghcr.io/development-containers/fedora:latest",
     //"image": "quay.io/podman/stable",
-	"privileged": true
+	"privileged": true,
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"TheNuProjectContributors.vscode-nushell-lang",
+				"rust-lang.rust-analyzer",
+				"Gleam.gleam",
+				"denoland.vscode-deno",
+				"tamasfe.even-better-toml"
+			]
+		}
+	}
 }
