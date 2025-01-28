@@ -11,12 +11,16 @@ def github_version (proj: string) : any -> string {
 
 
 def filter_version () : string -> string {
-  grep -oP '([0-9]+)\.([0-9]+)(.[0-9]+)?'
+  parse --regex '(?<version>([0-9]+)\.([0-9]+)(.[0-9]+)?)' | get version | first
 }
 
 def get_local_version (cmd: string) : any -> string {
     try {
-        run-external $cmd '--version' | lines | first | filter_version
+        let output = run-external $cmd '--version' | lines
+        print $"Getting the version for ($cmd) is ($output)"
+        let parsed_version = $output | first | filter_version 
+        print $"Parsed the version for ($cmd) as ($parsed_version)"
+        $parsed_version
     } catch { |err|
         print $"Running ($cmd) failed: ($err.msg)"
         "error"
@@ -24,17 +28,21 @@ def get_local_version (cmd: string) : any -> string {
 }
 
 
+def get_versions (user: string, repo: string, local: string) : any -> record {
+    {program: $repo, local: (get_local_version $local), latest: (github_version $"($user)/($repo)") }
+}
+
 def x (user: string, repo: string) : any -> record {
-    {program: $repo, local: (get_local_version $repo), latest: (github_version $"($user)/($repo)") }
+    get_versions $user $repo $repo
 }
 
 let versions1 = [
     [ program     local                         latest]; 
-    [ nushell     (get_local_version 'nu')      (github_version 'nushell/nushell')]
     [ cue     (cue version | lines | first | filter_version)      (github_version 'cue-lang/cue')]
 ]
 
 let versions2 = [
+    (get_versions nushell nushell nu)
     (x gleam-lang gleam)
     (x casey just)
     (x typst typst)
@@ -43,6 +51,7 @@ let versions2 = [
     (x denoland deno)
     (x getzola zola)
     (x jj-vcs jj)
+    (x erlang rebar3)
 ]
 
 
