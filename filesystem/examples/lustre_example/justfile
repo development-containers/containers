@@ -1,12 +1,23 @@
 _default:
-    @just --list
+    @just --list --unsorted
 
+# Run application for development
+run:
+    gleam run -m lustre/dev start
 
+# Run the tests
 test:
     gleam test
 
-serve:
-    gleam run -m lustre/dev start
+# Build the artefact for relase
+build:
+    gleam run -m lustre/dev build --minify=true
 
 clean:
     rm -r build
+
+# Format all code
+fmt:
+    gleam format
+
+pre_commit: (fmt) (test)

@@ -1,4 +1,5 @@
 *.beam
 *.ez
+priv/static/lustre_example.mjs
 /build
 erl_crash.dump
