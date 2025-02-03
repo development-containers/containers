@@ -4,6 +4,7 @@ import gleam/io
 import gleam/list
 import gleam/option.{type Option, None, Some}
 import gleam/string
+import gleam/uri.{type Uri}
 import lustre
 import lustre/attribute
 import lustre/effect
@@ -11,6 +12,7 @@ import lustre/element
 import lustre/element/html
 import lustre/event
 import lustre_http
+import modem
 
 pub fn main() {
   let app = lustre.application(init, update, view)
@@ -23,8 +25,18 @@ pub type Cat {
   Cat(id: String, url: String)
 }
 
+pub type Route {
+  CatCounter
+  Info
+}
+
 pub type Model {
-  Model(count: Int, cats: List(Cat), ip: Option(Result(String, String)))
+  Model(
+    count: Int,
+    cats: List(Cat),
+    ip: Option(Result(String, String)),
+    route: Route,
+  )
 }
 
 fn init(_flags) -> #(Model, effect.Effect(Msg)) {
@@ -33,7 +45,18 @@ fn init(_flags) -> #(Model, effect.Effect(Msg)) {
       "https://api.ipify.org",
       lustre_http.expect_text(ApiReturnedIpAddress),
     )
-  #(Model(count: 0, cats: [], ip: None), ip_effect)
+  #(
+    Model(count: 0, cats: [], ip: None, route: CatCounter),
+    effect.batch([ip_effect, modem.init(on_url_change)]),
+  )
+}
+
+fn on_url_change(uri: Uri) -> Msg {
+  case uri.path_segments(uri.path) {
+    ["cats"] -> OnRouteChange(CatCounter)
+    ["info"] -> OnRouteChange(Info)
+    _ -> OnRouteChange(Info)
+  }
 }
 
 pub type Msg {
@@ -41,6 +64,7 @@ pub type Msg {
   UserDecrementedCount
   ApiReturnedCats(Result(List(Cat), lustre_http.HttpError))
   ApiReturnedIpAddress(Result(String, lustre_http.HttpError))
+  OnRouteChange(Route)
 }
 
 pub fn update(model: Model, msg: Msg) -> #(Model, effect.Effect(Msg)) {
@@ -66,6 +90,10 @@ pub fn update(model: Model, msg: Msg) -> #(Model, effect.Effect(Msg)) {
       Model(..model, ip: Some(Ok(ip))),
       effect.none(),
     )
+    OnRouteChange(new_route) -> #(
+      Model(..model, route: new_route),
+      effect.none(),
+    )
   }
 }
 
@@ -82,29 +110,72 @@ fn get_cat() -> effect.Effect(Msg) {
 }
 
 pub fn view(model: Model) -> element.Element(Msg) {
-  let count = int.to_string(model.count)
   let ip_view = case model.ip {
     None -> element.none()
-    Some(Ok(ip)) -> html.span([], [html.text(ip)])
+    Some(Ok(ip)) -> html.span([], [html.text("Your ip is: "), html.text(ip)])
     Some(Error(err)) ->
       html.span([attribute.style([#("color", "red")])], [html.text(err)])
   }
 
+  html.div([attribute.class("page__container")], [
+    html.h1([], [html.text("Hello Gleam!")]),
+    html.main([attribute.class("page__main")], [
+      case model.route {
+        CatCounter -> cat_counter_view(model)
+        Info -> info_view(model)
+      },
+    ]),
+    html.footer([attribute.class("page__footer")], [
+      html.div([], [html.text("this is an example gleam app")]),
+      ip_view,
+    ]),
+  ])
+}
+
+fn info_view(_: Model) -> element.Element(a) {
   html.div([], [
-    ip_view,
+    html.h2([], [html.text("Info page")]),
+    html.ul([], [
+      html.li([], [html.a([attribute.href("/foo")], [html.text("foo")])]),
+      html.li([], [
+        html.a([attribute.href("/cats")], [html.text("cat counter")]),
+      ]),
+    ]),
+  ])
+}
+
+fn cat_counter_view(model: Model) -> element.Element(Msg) {
+  let count = int.to_string(model.count)
+
+  element.fragment([
+    html.a([attribute.href("/info")], [element.text("go to info")]),
     number_selector_view(count),
     element.keyed(
-      html.div([], _),
+      html.div(
+        [
+          attribute.style([
+            #("display", "flex"),
+            #("flex-wrap", "wrap"),
+            #("gap", "1rem"),
+            #("padding-bottom", "1.5rem"),
+          ]),
+        ],
+        _,
+      ),
       list.map(model.cats, fn(cat) { #(cat.url, cat_picture(cat)) }),
     ),
   ])
 }
 
 fn number_selector_view(count: String) -> element.Element(Msg) {
-  html.div([], [
-    html.button([event.on_click(UserIncrementedCount)], [element.text("+")]),
-    element.text(count),
-    html.button([event.on_click(UserDecrementedCount)], [element.text("-")]),
+  html.div([attribute.class("counter")], [
+    html.button([event.on_click(UserIncrementedCount), attribute.class("btn")], [
+      element.text("+"),
+    ]),
+    html.span([attribute.class("counter__text")], [element.text(count)]),
+    html.button([event.on_click(UserDecrementedCount), attribute.class("btn")], [
+      element.text("-"),
+    ]),
   ])
 }
 
@@ -113,5 +184,10 @@ fn cat_picture(cat: Cat) -> element.Element(a) {
     attribute.src(cat.url),
     attribute.class("cat-img"),
     attribute.height(200),
+    attribute.style([
+      #("flex", "1"),
+      #("object-fit", "cover"),
+      #("border", "1px solid #ddd"),
+    ]),
   ])
 }
