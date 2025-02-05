@@ -14,6 +14,8 @@ import lustre/event
 import lustre_http
 import modem
 
+import alpha_input
+
 pub fn main() {
   let app = lustre.application(init, update, view)
   let assert Ok(_) = lustre.start(app, "#app", Nil)
@@ -36,6 +38,7 @@ pub type Model {
     cats: List(Cat),
     ip: Option(Result(String, String)),
     route: Route,
+    input: alpha_input.Model,
   )
 }
 
@@ -46,7 +49,13 @@ fn init(_flags) -> #(Model, effect.Effect(Msg)) {
       lustre_http.expect_text(ApiReturnedIpAddress),
     )
   #(
-    Model(count: 0, cats: [], ip: None, route: CatCounter),
+    Model(
+      count: 0,
+      cats: [],
+      ip: None,
+      route: CatCounter,
+      input: alpha_input.init(),
+    ),
     effect.batch([ip_effect, modem.init(on_url_change)]),
   )
 }
@@ -65,6 +74,7 @@ pub type Msg {
   ApiReturnedCats(Result(List(Cat), lustre_http.HttpError))
   ApiReturnedIpAddress(Result(String, lustre_http.HttpError))
   OnRouteChange(Route)
+  NameUpdated(alpha_input.Msg)
 }
 
 pub fn update(model: Model, msg: Msg) -> #(Model, effect.Effect(Msg)) {
@@ -92,6 +102,10 @@ pub fn update(model: Model, msg: Msg) -> #(Model, effect.Effect(Msg)) {
     )
     OnRouteChange(new_route) -> #(
       Model(..model, route: new_route),
+      effect.none(),
+    )
+    NameUpdated(msg) -> #(
+      Model(..model, input: alpha_input.update(model.input, msg)),
       effect.none(),
     )
   }
@@ -128,6 +142,7 @@ pub fn view(model: Model) -> element.Element(Msg) {
     html.footer([attribute.class("page__footer")], [
       html.div([], [html.text("this is an example gleam app")]),
       ip_view,
+      alpha_input.view(model.input, NameUpdated),
     ]),
   ])
 }
