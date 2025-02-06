@@ -5,8 +5,13 @@
 
 def github_version (proj: string) : any -> string {
     print $"Fetching latest version from github for ($proj)"
-    sleep 5sec
-    http get $"https://api.github.com/repos/($proj)/releases/latest" | get tag_name | str trim --left --char=v
+    sleep 10sec
+    try {
+        http get $"https://api.github.com/repos/($proj)/releases/latest" | get tag_name | str trim --left --char=v
+    } catch {  |err|
+        print $"Fetching github api for ($proj) failed with error: ($err.msg)"
+        "network error"
+    }
 }
 
 
