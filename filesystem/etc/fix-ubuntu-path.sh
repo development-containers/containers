@@ -4,7 +4,7 @@ set -xeuo pipefail
 # Devcontainer ubuntu bash overrides our path changes. Well. Then we just set them again
 
 
-declare -a paths=("/opt/nushell/" "/opt/typst" "/opt/zellij" "/opt/jujutsu" "/opt/starship" "/opt/deno" "/opt/intellij/bin" "/opt/cuelang" "/opt/gleam" "/opt/zola" "/opt/nickel" "/opt/taplo" "/opt/carapace")
+declare -a paths=("/opt/nushell/" "/opt/typst" "/opt/zellij" "/opt/jujutsu" "/opt/starship" "/opt/deno" "/opt/intellij/bin" "/opt/cuelang" "/opt/gleam" "/opt/zola" "/opt/nickel" "/opt/taplo" "/opt/carapace" "/opt/rebar3" "/home/codespace/.local/share/mise/shims")
 
 
 path_statement () {
