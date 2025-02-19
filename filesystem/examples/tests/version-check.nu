@@ -47,8 +47,12 @@ let versions1 = [
 ]
 
 let versions2 = [
+    (x carapace-sh carapace)
     (x tweag nickel)
+    (x tamasfe taplo)
     (get_versions nushell nushell nu)
+    (get_versions rust-lang rust rustc)
+    (get_versions helix-editor helix hx)
     (x gleam-lang gleam)
     (x casey just)
     (x typst typst)
