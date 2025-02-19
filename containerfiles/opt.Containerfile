@@ -3,20 +3,20 @@ FROM registry.fedoraproject.org/fedora:41
 RUN dnf install -y unar
 
 ENV NUSHELL_VERSION=0.101.0
-ENV TYPST_VERSION=0.12.0
+ENV TYPST_VERSION=0.13.0
 ENV ZELLIJ_VERSION=0.41.2
 ENV CUELANG_VERSION=0.11.1
-ENV GLEAM_VERSION=1.7.0
+ENV GLEAM_VERSION=1.8.1
 ENV STARSHIP_VERSION=1.22.1
 ENV DENO_VERSION=2.1.6
-ENV ZOLA_VERSION=0.19.2
+ENV ZOLA_VERSION=0.20.0
 ENV NICKEL_VERSION=1.9.1
 ENV TAPLO_VERSION=0.9.3
 ENV CARAPACE_VERSION=1.1.1
-ENV JUJUTSU_VERSION=0.25.0
+ENV JUJUTSU_VERSION=0.26.0
 
 #unpack jujutsu
-ADD --checksum=sha256:56cf8d80043bc5165919b5b47c5763f5e741313931ca07bad8443704a7ecd180 https://github.com/jj-vcs/jj/releases/download/v${JUJUTSU_VERSION}/jj-v${JUJUTSU_VERSION}-x86_64-unknown-linux-musl.tar.gz /jj.tar.gz
+ADD --checksum=sha256:9f0be0f1348a2372b7c08d0130cae994ee9061f9a6c2eebe458f9266cd1e0faa https://github.com/jj-vcs/jj/releases/download/v${JUJUTSU_VERSION}/jj-v${JUJUTSU_VERSION}-x86_64-unknown-linux-musl.tar.gz /jj.tar.gz
 RUN mkdir /opt/jujutsu && unar /jj.tar.gz -o /tmp/jujutsu && mv /tmp/jujutsu/**/* /opt/jujutsu
 
 # unpack nushell
@@ -24,7 +24,7 @@ ADD --checksum=sha256:9d316709c29777f2bdf81d455fc74c54af3bbf61038d409eb8f147931f
 RUN mkdir /opt/nushell && unar /nu.tar.gz -o /tmp/nu && mv /tmp/nu/**/* /opt/nushell
 
 #unpack typst
-ADD --checksum=sha256:605130a770ebd59a4a579673079cb913a13e75985231657a71d6239a57539ec3 https://github.com/typst/typst/releases/download/v${TYPST_VERSION}/typst-x86_64-unknown-linux-musl.tar.xz  /typst.tar.xz
+ADD --checksum=sha256:cd1148da61d6844e62c330fc6222e988480acafe33b76daec8eb5d221258feb6 https://github.com/typst/typst/releases/download/v${TYPST_VERSION}/typst-x86_64-unknown-linux-musl.tar.xz  /typst.tar.xz
 RUN mkdir /opt/typst && unar /typst.tar.xz -o /tmp/typst && mv /tmp/typst/**/* /opt/typst
 
 #unpack zellij
@@ -36,7 +36,7 @@ ADD --checksum=sha256:60c46ec5b90190c22a96ab3529ad363d03b687331bbeb6d7d8097a2983
 RUN mkdir /opt/cuelang && unar /cue.tar.gz -o /tmp/cue && mv /tmp/cue/cue/* /opt/cuelang
 
 # unpack gleam
-ADD --checksum=sha256:b5fc6e6b9b8e8ebeeda3b9be60503d93b409d437d9f4595b4d5c9e1449c14f49 https://github.com/gleam-lang/gleam/releases/download/v${GLEAM_VERSION}/gleam-v${GLEAM_VERSION}-x86_64-unknown-linux-musl.tar.gz /gleam.tar.gz
+ADD --checksum=sha256:1d608de1238a771f99086d6cacc52e8c65560a64e9c1ed7b0518f05ec7a847a8 https://github.com/gleam-lang/gleam/releases/download/v${GLEAM_VERSION}/gleam-v${GLEAM_VERSION}-x86_64-unknown-linux-musl.tar.gz /gleam.tar.gz
 RUN mkdir /opt/gleam && unar /gleam.tar.gz -o /tmp/gleam && mv /tmp/gleam/* /opt/gleam
 
 # unpack starship
@@ -53,7 +53,7 @@ ADD --checksum=sha256:8cd5433baf9642380110b1f1ee03f4740aa8d2b470953e5cb40de1bbc9
 RUN mkdir /opt/deno && unar /deno.zip -o /tmp/deno && mv /tmp/deno/* /opt/deno
 
 #unpack zola
-ADD --checksum=sha256:0798e69b86c628ddcb264ebd86c8cc8dce7670b9049060bf94faa73f6857cd9c https://github.com/getzola/zola/releases/download/v${ZOLA_VERSION}/zola-v${ZOLA_VERSION}-x86_64-unknown-linux-gnu.tar.gz /zola.tar.gz
+ADD --checksum=sha256:ca7ed5b33a739c5b5b35a0e207e5c3578a652cd12b61c675763b3ff34c322d08 https://github.com/getzola/zola/releases/download/v${ZOLA_VERSION}/zola-v${ZOLA_VERSION}-x86_64-unknown-linux-gnu.tar.gz /zola.tar.gz
 RUN mkdir /opt/zola && unar /zola.tar.gz -o /tmp/zola && mv /tmp/zola/* /opt/zola
 
 #unpack nickel
