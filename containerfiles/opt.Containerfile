@@ -2,7 +2,7 @@ FROM registry.fedoraproject.org/fedora:41
 
 RUN dnf install -y unar
 
-ENV NUSHELL_VERSION=0.101.0
+ENV NUSHELL_VERSION=0.102.0
 ENV TYPST_VERSION=0.13.0
 ENV ZELLIJ_VERSION=0.41.2
 ENV CUELANG_VERSION=0.11.1
@@ -10,7 +10,7 @@ ENV GLEAM_VERSION=1.8.1
 ENV STARSHIP_VERSION=1.22.1
 ENV DENO_VERSION=2.1.6
 ENV ZOLA_VERSION=0.20.0
-ENV NICKEL_VERSION=1.9.1
+ENV NICKEL_VERSION=1.10.0
 ENV TAPLO_VERSION=0.9.3
 ENV CARAPACE_VERSION=1.1.1
 ENV JUJUTSU_VERSION=0.26.0
@@ -20,7 +20,7 @@ ADD --checksum=sha256:9f0be0f1348a2372b7c08d0130cae994ee9061f9a6c2eebe458f9266cd
 RUN mkdir /opt/jujutsu && unar /jj.tar.gz -o /tmp/jujutsu && mv /tmp/jujutsu/**/* /opt/jujutsu
 
 # unpack nushell
-ADD --checksum=sha256:9d316709c29777f2bdf81d455fc74c54af3bbf61038d409eb8f147931ff03762 https://github.com/nushell/nushell/releases/download/${NUSHELL_VERSION}/nu-${NUSHELL_VERSION}-x86_64-unknown-linux-musl.tar.gz  /nu.tar.gz
+ADD --checksum=sha256:c4d9a3388d893e8c923b1a5363dbb9c7f081b71a4a5867767d7907632ecc0929 https://github.com/nushell/nushell/releases/download/${NUSHELL_VERSION}/nu-${NUSHELL_VERSION}-x86_64-unknown-linux-musl.tar.gz  /nu.tar.gz
 RUN mkdir /opt/nushell && unar /nu.tar.gz -o /tmp/nu && mv /tmp/nu/**/* /opt/nushell
 
 #unpack typst
@@ -57,8 +57,9 @@ ADD --checksum=sha256:ca7ed5b33a739c5b5b35a0e207e5c3578a652cd12b61c675763b3ff34c
 RUN mkdir /opt/zola && unar /zola.tar.gz -o /tmp/zola && mv /tmp/zola/* /opt/zola
 
 #unpack nickel
-ADD --checksum=sha256:9b26326663c8255aec85d4e521d6ac33bb08c522433e06b80339b4aee61b8b84 https://github.com/tweag/nickel/releases/download/${NICKEL_VERSION}/nickel-x86_64-linux /nickel
-RUN mkdir /opt/nickel && mv /nickel /opt/nickel/nickel && chmod +x /opt/nickel/nickel 
+ADD --checksum=sha256:871eff55beaf30cf516ac57eaba3f9bcc2f7070543370f9be796aaf2e0d832da https://github.com/tweag/nickel/releases/download/${NICKEL_VERSION}/nickel-x86_64-linux /nickel
+ADD --checksum=sha256:9bf94cf85cab6f89b4b3e9edeff4fe41df81a3edd024c610e27cfc706e6f3e60 https://github.com/tweag/nickel/releases/download/${NICKEL_VERSION}/nls-x86_64-linux /nls
+RUN mkdir /opt/nickel && mv /nls /opt/nickel/nls && chmod +x /opt/nickel/nls && mv /nickel /opt/nickel/nickel && chmod +x /opt/nickel/nickel 
 
 
 #unpack taplo

@@ -25,7 +25,6 @@ ENV EDITOR="hx"
 ENV VISUAL="hx"
 
 RUN rustup-init -y 
-RUN sh -l -c "cargo install --locked nickel-lang-lsp"
 
 
 

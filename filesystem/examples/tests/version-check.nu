@@ -47,6 +47,7 @@ let versions1 = [
 ]
 
 let versions2 = [
+    (x tweag nickel)
     (get_versions nushell nushell nu)
     (x gleam-lang gleam)
     (x casey just)
