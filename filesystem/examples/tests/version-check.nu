@@ -21,7 +21,7 @@ def filter_version () : string -> string {
 
 def get_local_version (cmd: string) : any -> string {
     try {
-        let output = run-external $cmd '--version' | lines
+        let output = run-external $cmd '--version' out+err>| lines
         print $"Getting the version for ($cmd) is ($output)"
         let parsed_version = $output | first | filter_version 
         print $"Parsed the version for ($cmd) as ($parsed_version)"
@@ -49,6 +49,7 @@ let versions1 = [
 let versions2 = [
     (x carapace-sh carapace)
     (x tweag nickel)
+    (get_versions tweag nickel nls)
     (x tamasfe taplo)
     (get_versions nushell nushell nu)
     (get_versions rust-lang rust rustc)
@@ -62,6 +63,7 @@ let versions2 = [
     (x getzola zola)
     (x jj-vcs jj)
     (x erlang rebar3)
+    (x dbcli litecli)
 ]
 
 
