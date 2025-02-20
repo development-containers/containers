@@ -47,7 +47,7 @@ let versions1 = [
 ]
 
 let versions2 = [
-    (x carapace-sh carapace)
+    (get_versions carapace-sh carapace-bin carapace)
     (x tweag nickel)
     (get_versions tweag nickel nls)
     (x tamasfe taplo)

@@ -12,7 +12,7 @@ ENV DENO_VERSION=2.1.6
 ENV ZOLA_VERSION=0.20.0
 ENV NICKEL_VERSION=1.10.0
 ENV TAPLO_VERSION=0.9.3
-ENV CARAPACE_VERSION=1.1.1
+ENV CARAPACE_VERSION=1.2.1
 ENV JUJUTSU_VERSION=0.26.0
 
 #unpack jujutsu
@@ -68,7 +68,7 @@ RUN mkdir /opt/taplo &&  unar /taplo.gz -o /opt/taplo/ && chmod +x /opt/taplo/ta
 
 
 #unpack carapace
-ADD --checksum=sha256:0f716792571b318d9c86ebc8b4db6d05972ce5def5d42c8646f0ba4e899a0794 https://github.com/carapace-sh/carapace-bin/releases/download/v${CARAPACE_VERSION}/carapace-bin_1.1.1_linux_amd64.tar.gz /carapace.tar.gz
+ADD --checksum=sha256:78f87b0f23aec24de91e14872cf4fdbf2a73958d5e658bf5fa93398ed315165f https://github.com/carapace-sh/carapace-bin/releases/download/v${CARAPACE_VERSION}/carapace-bin_${CARAPACE_VERSION}_linux_amd64.tar.gz /carapace.tar.gz
 RUN mkdir /opt/carapace &&  unar /carapace.tar.gz -o /tmp/carapace/ && mv /tmp/carapace/carapace/* /opt/carapace
 
 
