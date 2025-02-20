@@ -47,6 +47,10 @@ let versions1 = [
 ]
 
 let versions2 = [
+    (x Wilfred difftastic)
+    (x sharkdp bat)
+    (get_versions BurntSushi ripgrep rg)
+    (x sharkdp fd)
     (get_versions carapace-sh carapace-bin carapace)
     (x tweag nickel)
     (get_versions tweag nickel nls)
@@ -66,8 +70,6 @@ let versions2 = [
     (x dbcli litecli)
 ]
 
-
-# todo rg fd bat
 
 let versions = $versions1 | append $versions2
 

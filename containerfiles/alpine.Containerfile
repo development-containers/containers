@@ -7,7 +7,7 @@ RUN apk update && \
             curl git pijul deno rustup mprocs \
             just bottom zellij eza ripgrep fd python3 \
             bash difftastic openjdk21-jdk grep cue-cli \
-            zola nickel nickel-language-server 	starship taplo carapace jujutsu \
+            zola nickel nickel-language-server starship taplo carapace jujutsu \
             bat erlang rebar3 inotify-tools litecli
 # TODO: unar https://gitlab.alpinelinux.org/alpine/aports/-/issues/5846
 RUN rustup-init -y 
