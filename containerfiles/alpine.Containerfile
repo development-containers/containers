@@ -6,9 +6,9 @@ RUN apk update && \
             nushell helix tree-sitter-grammars\
             curl git pijul deno rustup mprocs \
             just bottom zellij eza ripgrep fd python3 \
-            bash difftastic openjdk21-jdk grep cue-cli \
+            bash difftastic openjdk21-jdk grep cue-cli mandoc man-pages \
             zola nickel nickel-language-server starship taplo carapace jujutsu \
-            bat erlang rebar3 inotify-tools litecli tokei hexyl age
+            bat erlang rebar3 inotify-tools litecli tokei hexyl age pandoc
 # TODO: unar https://gitlab.alpinelinux.org/alpine/aports/-/issues/5846
 RUN rustup-init -y 
 

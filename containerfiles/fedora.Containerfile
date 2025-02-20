@@ -5,7 +5,7 @@ FROM quay.io/podman/stable
 RUN dnf install -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm && \
     dnf update -y && \
     dnf install -y rust-analyzer sqlite rustup helix curl git rustup just \
-    eza ripgrep fd python3 bash difftastic unar 7z unzip htop cmake litecli \
+    eza ripgrep fd python3 bash difftastic unar 7z unzip htop cmake litecli man \
     openssl-devel java-latest-openjdk bat tokei hexyl age tree nodejs-bash-language-server \
     rakudo wget racket pandoc shellcheck inotify-tools g++ automake autoconf ncurses-devel && \
     dnf clean all
@@ -30,7 +30,6 @@ RUN rustup-init -y
 
 # TODO: configure starship prompt to be *fancy*
 # TODO: kotlin
-# TODO: setup difftastic for git
 # TODO: lume example project
 # TODO: kotlin spring example project
 # TODO: nickel and cuelang example files
