@@ -34,7 +34,7 @@ def get_local_version (cmd: string) : any -> string {
 
 
 def get_versions (user: string, repo: string, local: string) : any -> record {
-    {program: $repo, local: (get_local_version $local), latest: (github_version $"($user)/($repo)") }
+    {program: $local, local: (get_local_version $local), latest: (github_version $"($user)/($repo)") }
 }
 
 def x (user: string, repo: string) : any -> record {
