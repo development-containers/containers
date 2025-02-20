@@ -47,8 +47,13 @@ let versions1 = [
 ]
 
 let versions2 = [
-    (x Wilfred difftastic)
+    (x pvolok mprocs)
+    (x jgm pandoc)
+    (x XAMPPRocky tokei)
+    (get_versions Wilfred difftastic difft)
     (x sharkdp bat)
+    (x sharkdp hexyl)
+    (x FiloSottile age)
     (get_versions BurntSushi ripgrep rg)
     (x sharkdp fd)
     (get_versions carapace-sh carapace-bin carapace)

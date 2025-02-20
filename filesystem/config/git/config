@@ -15,3 +15,7 @@
     # Set difftastic as the default difftool, so we don't need to specify
     # `-t difftastic` every time.
     tool = difftastic
+
+# set this directory to save for github code spaces 
+[safe]
+        directory = /workspaces/containers
