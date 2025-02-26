@@ -14,7 +14,7 @@ jobs:
     strategy:
       fail-fast: false 
       matrix:
-        container: ["ubuntu", "fedora", "alpine"]
+        container: ["ubuntu", "fedora", "alpine", "ci-fedora"]
     runs-on: ubuntu-24.04
     permissions:
       contents: read

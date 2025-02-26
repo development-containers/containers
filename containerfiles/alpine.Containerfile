@@ -3,7 +3,7 @@ FROM alpine:edge
 RUN apk update && \
     apk upgrade && \
     apk add rust-analyzer sqlite gleam typst \
-            nushell helix tree-sitter-grammars\
+            nushell helix tree-sitter-grammars \
             curl git pijul deno rustup mprocs \
             just bottom zellij eza ripgrep fd python3 \
             bash difftastic openjdk21-jdk grep cue-cli mandoc man-pages \
@@ -15,4 +15,5 @@ RUN rustup-init -y
 COPY ./filesystem/config /root/.config
 COPY ./filesystem/examples /examples
 
-ENTRYPOINT [ "sh", "-l", "-c", "nu"]
+ENV SHELL=nu
+CMD [ "zellij"]
