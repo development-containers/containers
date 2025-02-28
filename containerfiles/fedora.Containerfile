@@ -6,7 +6,7 @@ RUN dnf install -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-rele
     dnf update -y && \
     dnf install -y rust-analyzer sqlite rustup helix curl git rustup just \
     eza ripgrep fd python3 bash difftastic unar 7z unzip htop cmake litecli man \
-    openssl-devel java-latest-openjdk bat tokei hexyl age tree nodejs-bash-language-server \
+    openssl-devel java-21-openjdk bat tokei hexyl age tree nodejs-bash-language-server \
     rakudo wget racket pandoc shellcheck inotify-tools g++ automake autoconf ncurses-devel && \
     dnf clean all
 
