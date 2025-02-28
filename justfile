@@ -22,6 +22,7 @@ _push name:
 
 
 build_and_push name: (_build name) (test name) (_push name)
+build_and_push_without_test name: (_build name)(_push name)
 
 
 # build and enter a container
