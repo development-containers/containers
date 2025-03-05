@@ -15,7 +15,7 @@ COPY --from=opt /opt/ /opt/
 COPY ./filesystem/config /root/.config
 COPY ./filesystem/examples /examples
 
-ENV PATH="$PATH:/opt/nushell/:/opt/jujutsu:/opt/typst:/opt/zellij:opt/typst:/opt/starship:/opt/deno:/opt/intellij/bin:/opt/cuelang:/opt/gleam:/opt/zola:/opt/nickel:/opt/taplo:/opt/carapace:/opt/rebar3"
+ENV PATH="$PATH:/opt/nushell/:/opt/jujutsu:/opt/typst:/opt/zellij:opt/typst:/opt/starship:/opt/deno:/opt/intellij/bin:/opt/cuelang:/opt/gleam:/opt/zola:/opt/nickel:/opt/taplo:/opt/carapace:/opt/rebar3:/opt/mprocs"
 ENV PATH="/root/.local/share/mise/shims/:/root/.local/bin/:$PATH"
 RUN curl https://mise.run | sh
 RUN mise use --global erlang@27
