@@ -47,6 +47,7 @@ let versions1 = [
 ]
 
 let versions2 = [
+    (x red red)
     (x pvolok mprocs)
     (x jgm pandoc)
     (x XAMPPRocky tokei)
