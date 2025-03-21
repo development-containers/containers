@@ -83,5 +83,5 @@ ADD --checksum=sha256:8708b84540cbde9fcff123528a7b0a679eaf7b73bc2e070ba4b96e741e
 RUN mkdir /opt/mprocs &&  unar /mprocs.tar.gz -o /tmp/mprocs/ && mv /tmp/mprocs/* /opt/mprocs
 
 #get red
-ADD --checksum=sha256:625a7cbe17955022078397567c55c473ca3f8f74a54f2253e8d4ab1bccaa5c11  https://static.red-lang.org/dl/linux/red-cli-066 /tmp/red
-RUN mkdir /opt/red && mv /tmp/red /opt/red//red && chmod +x /opt/red/red
+#ADD --checksum=sha256:625a7cbe17955022078397567c55c473ca3f8f74a54f2253e8d4ab1bccaa5c11  https://static.red-lang.org/dl/linux/red-cli-066 /tmp/red
+#RUN mkdir /opt/red && mv /tmp/red /opt/red//red && chmod +x /opt/red/red
