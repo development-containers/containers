@@ -40,3 +40,9 @@ test name: (_build name) (_run_command name 'set -xeuo pipefail; for script in /
 clear_docker_cache:
     docker image prune -f
     docker builder prune -f
+
+# fix podman on github codespaces
+# on codespaces the boot id changes somtimes
+reset_podman:
+    rm -r /run/containers/storage
+    rm -r /run/libpod
