@@ -4,7 +4,7 @@ FROM registry.fedoraproject.org/fedora:41
 
 RUN dnf install -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm && \
     dnf update -y && \
-    dnf install -y sqlite rustup curl git rustup just ripgrep fd bash cmake \
+    dnf install -y sqlite rustup curl git rustup just ripgrep fd bash cmake nodejs \
     openssl-devel age wget g++ automake autoconf ncurses-devel unar 7z unzip && \
     dnf clean all
 
