@@ -12,8 +12,9 @@ RUN dnf install -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-rele
 COPY --from=opt /opt/deno /opt/deno
 COPY --from=opt /opt/nushell /opt/nushell
 COPY --from=opt /opt/cross /opt/cross
+COPY --from=opt /opt/dioxus /opt/dioxus
 
-ENV PATH="$PATH:/opt/deno/:/opt/nushell/:/opt/cross/"
+ENV PATH="$PATH:/opt/deno/:/opt/nushell/:/opt/cross/:/opt/dioxus/"
 
 
 ENV RUSTUP_HOME=/usr/local/rustup \
@@ -22,6 +23,5 @@ ENV RUSTUP_HOME=/usr/local/rustup \
 
 RUN rustup-init -y 
 RUN cargo install cargo-audit --locked 
-RUN cargo install dioxus-cli --version 0.6.3
 RUN cargo install cargo-chef --locked --version 0.1.71
 
