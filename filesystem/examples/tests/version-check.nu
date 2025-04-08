@@ -47,6 +47,8 @@ let versions1 = [
 ]
 
 let versions2 = [
+    (x cross-rs cross)
+    (get_versions DioxusLabs dioxus dx)
     (x pvolok mprocs)
     (x jgm pandoc)
     (x XAMPPRocky tokei)
