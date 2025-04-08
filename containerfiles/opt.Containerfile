@@ -88,7 +88,7 @@ RUN mkdir /opt/mprocs && unar /mprocs.tar.gz -o /tmp/mprocs/ && mv /tmp/mprocs/*
 
 #unpack cross
 ADD --checksum=sha256:a486cefa6cb486971b97be321ea9dfc2e90c1979550295314a368f53fab6d588 https://github.com/cross-rs/cross/releases/download/v${CROSS_VERSION}/cross-x86_64-unknown-linux-musl.tar.gz /cross.tar.gz
-RUN mkdir /opt/cross &&  unar /cross.tar.gz -o /tmp/cross/ && mv /tmp/cross/* /opt/cross
+RUN mkdir /opt/cross && unar /cross.tar.gz -o /tmp/cross/ && mv /tmp/cross/cross /opt/cross
 
 #unpack dioxus-cli
 ADD --checksum=sha256:2d2e205bad9715141019ec558e19874d3922c7803656e98ba4518c18a0e22196 https://github.com/DioxusLabs/dioxus/releases/download/v${DIOXUS_VERSION}/dx-x86_64-unknown-linux-gnu-v${DIOXUS_VERSION}.tar.gz /dioxus.tar.gz
