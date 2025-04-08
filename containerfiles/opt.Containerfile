@@ -99,6 +99,11 @@ ADD --checksum=sha256:5eaad156124e01d54ce937cbb2c069a8145b01e7fa29aef62bef1b386b
 RUN mkdir /opt/cargo-audit &&  unar /cargo-audit.tar.gz -o /tmp/cargo-audit/ && mv /tmp/cargo-audit/* /opt/cargo-audit
 
 
+#unpack cargo-chef
+ENV CARGO_CHEF_VERSION=0.1.71
+ADD --checksum=sha256:0ac1c3668f81dcbc8867e3ba41e939d98ff4a3f4ce1aeda795da138685618815 https://github.com/LukeMathWalker/cargo-chef/releases/download/v${CARGO_CHEF_VERSION}/cargo-chef-x86_64-unknown-linux-gnu.tar.gz /cargo-chef.tar.gz
+RUN mkdir /opt/cargo-chef &&  unar /cargo-chef.tar.gz -o /tmp/cargo-chef/ && mv /tmp/cargo-chef/* /opt/cargo-chef
+
 #get red
 #ADD --checksum=sha256:625a7cbe17955022078397567c55c473ca3f8f74a54f2253e8d4ab1bccaa5c11  https://static.red-lang.org/dl/linux/red-cli-066 /tmp/red
 #RUN mkdir /opt/red && mv /tmp/red /opt/red//red && chmod +x /opt/red/red

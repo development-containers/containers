@@ -47,6 +47,7 @@ let versions1 = [
 ]
 
 let versions2 = [
+    (x LukeMathWalker cargo-chef)
     (x cross-rs cross)
     (get_versions rustsec rustsec cargo-audit)
     (get_versions DioxusLabs dioxus dx)
