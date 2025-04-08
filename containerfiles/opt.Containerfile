@@ -14,8 +14,9 @@ ENV NICKEL_VERSION=1.10.0
 ENV TAPLO_VERSION=0.9.3
 ENV CARAPACE_VERSION=1.2.1
 ENV JUJUTSU_VERSION=0.26.0
-ENV RED_VERSION=66
-
+ENV CORSS_VERSION=0.2.5
+ENV MPROCS_VERSION=0.7.2
+ENV REBAR_VERSION=3.24.0
 
 #unpack jujutsu
 ADD --checksum=sha256:9f0be0f1348a2372b7c08d0130cae994ee9061f9a6c2eebe458f9266cd1e0faa https://github.com/jj-vcs/jj/releases/download/v${JUJUTSU_VERSION}/jj-v${JUJUTSU_VERSION}-x86_64-unknown-linux-musl.tar.gz /jj.tar.gz
@@ -75,12 +76,18 @@ RUN mkdir /opt/carapace &&  unar /carapace.tar.gz -o /tmp/carapace/ && mv /tmp/c
 
 
 #unpack rebar3
-ADD --checksum=sha256:d2d31cfb98904b8e4917300a75f870de12cb5167cd6214d1043e973a56668a54 https://github.com/erlang/rebar3/releases/download/3.24.0/rebar3 /opt/rebar3/rebar3
+ADD --checksum=sha256:d2d31cfb98904b8e4917300a75f870de12cb5167cd6214d1043e973a56668a54 https://github.com/erlang/rebar3/releases/download/${REBAR_VERSION}/rebar3 /opt/rebar3/rebar3
 RUN chmod +x /opt/rebar3/rebar3
 
 #unpack mprocs
-ADD --checksum=sha256:8708b84540cbde9fcff123528a7b0a679eaf7b73bc2e070ba4b96e741ea00b03 https://github.com/pvolok/mprocs/releases/download/v0.7.2/mprocs-0.7.2-linux-x86_64-musl.tar.gz /mprocs.tar.gz
-RUN mkdir /opt/mprocs &&  unar /mprocs.tar.gz -o /tmp/mprocs/ && mv /tmp/mprocs/* /opt/mprocs
+ADD --checksum=sha256:8708b84540cbde9fcff123528a7b0a679eaf7b73bc2e070ba4b96e741ea00b03 https://github.com/pvolok/mprocs/releases/download/v${MPROCS_VERSION}/mprocs-${MPROCS_VERSION}-linux-x86_64-musl.tar.gz /mprocs.tar.gz
+RUN mkdir /opt/mprocs && unar /mprocs.tar.gz -o /tmp/mprocs/ && mv /tmp/mprocs/* /opt/mprocs
+
+
+#unpack cross
+ADD --checksum=sha256:a486cefa6cb486971b97be321ea9dfc2e90c1979550295314a368f53fab6d588 https://github.com/cross-rs/cross/releases/download/v${CROSS_VERSION}/cross-x86_64-unknown-linux-musl.tar.gz /cross.tar.gz
+RUN mkdir /opt/cross &&  unar /cross.tar.gz -o /tmp/cross/ && mv /tmp/cross/* /opt/cross
+
 
 #get red
 #ADD --checksum=sha256:625a7cbe17955022078397567c55c473ca3f8f74a54f2253e8d4ab1bccaa5c11  https://static.red-lang.org/dl/linux/red-cli-066 /tmp/red

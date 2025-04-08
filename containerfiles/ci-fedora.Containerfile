@@ -1,5 +1,5 @@
 # A simple fedora image for use in CI and builder scenarios
-FROM registry.fedoraproject.org/fedora:41 
+FROM quay.io/podman/stable:latest
 
 
 RUN dnf install -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm && \
@@ -11,8 +11,9 @@ RUN dnf install -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-rele
 # ------
 COPY --from=opt /opt/deno /opt/deno
 COPY --from=opt /opt/nushell /opt/nushell
+COPY --from=opt /opt/cross /opt/cross
 
-ENV PATH="$PATH:/opt/deno:/opt/nushell/"
+ENV PATH="$PATH:/opt/deno/:/opt/nushell/:/opt/cross/"
 
 
 ENV RUSTUP_HOME=/usr/local/rustup \
