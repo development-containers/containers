@@ -18,6 +18,7 @@ ENV CROSS_VERSION=0.2.5
 ENV MPROCS_VERSION=0.7.2
 ENV REBAR_VERSION=3.24.0
 ENV DIOXUS_VERSION=0.6.3
+ENV CARGO_AUDIT_VERSION=0.21.2
 
 #unpack jujutsu
 ADD --checksum=sha256:9f0be0f1348a2372b7c08d0130cae994ee9061f9a6c2eebe458f9266cd1e0faa https://github.com/jj-vcs/jj/releases/download/v${JUJUTSU_VERSION}/jj-v${JUJUTSU_VERSION}-x86_64-unknown-linux-musl.tar.gz /jj.tar.gz
@@ -92,6 +93,10 @@ RUN mkdir /opt/cross &&  unar /cross.tar.gz -o /tmp/cross/ && mv /tmp/cross/* /o
 #unpack dioxus-cli
 ADD --checksum=sha256:2d2e205bad9715141019ec558e19874d3922c7803656e98ba4518c18a0e22196 https://github.com/DioxusLabs/dioxus/releases/download/v${DIOXUS_VERSION}/dx-x86_64-unknown-linux-gnu-v${DIOXUS_VERSION}.tar.gz /dioxus.tar.gz
 RUN mkdir /opt/dioxus &&  unar /dioxus.tar.gz -o /opt/dioxus/dx
+
+#unpack cargo-audit
+ADD --checksum=sha256:5eaad156124e01d54ce937cbb2c069a8145b01e7fa29aef62bef1b386b4c1519 https://github.com/rustsec/rustsec/releases/download/cargo-audit/v${CARGO_AUDIT_VERSION}/cargo-audit-x86_64-unknown-linux-gnu-v${CARGO_AUDIT_VERSION}.tgz /cargo-audit.tar.gz
+RUN mkdir /opt/cargo-audit &&  unar /cargo-audit.tar.gz -o /tmp/cargo-audit/ && mv /tmp/cargo-audit/* /opt/cargo-audit
 
 
 #get red
