@@ -9,12 +9,12 @@ RUN dnf install -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-rele
     dnf clean all
 
 # ------
-COPY --from=opt /opt/deno /opt/deno
-COPY --from=opt /opt/nushell /opt/nushell
-COPY --from=opt /opt/cross /opt/cross
-COPY --from=opt /opt/dioxus /opt/dioxus
-COPY --from=opt /opt/cargo-audit /opt/cargo-audit
-COPY --from=opt /opt/cargo-chef /opt/cargo-chef
+COPY --link --from=opt /opt/deno /opt/deno
+COPY --link --from=opt /opt/nushell /opt/nushell
+COPY --link --from=opt /opt/cross /opt/cross
+COPY --link --from=opt /opt/dioxus /opt/dioxus
+COPY --link --from=opt /opt/cargo-audit /opt/cargo-audit
+COPY --link --from=opt /opt/cargo-chef /opt/cargo-chef
 
 
 ENV PATH="$PATH:/opt/deno/:/opt/nushell/:/opt/cross/:/opt/dioxus/:/opt/cargo-audit:/opt/cargo-chef"
