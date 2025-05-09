@@ -2,17 +2,17 @@ FROM registry.fedoraproject.org/fedora:41
 
 RUN dnf install -y unar
 
-ENV NUSHELL_VERSION=0.102.0
+ENV NUSHELL_VERSION=0.104.0
 ENV TYPST_VERSION=0.13.0
 ENV ZELLIJ_VERSION=0.41.2
-ENV CUELANG_VERSION=0.11.1
-ENV GLEAM_VERSION=1.9.1
+ENV CUELANG_VERSION=0.12.1
+ENV GLEAM_VERSION=1.10.0
 ENV STARSHIP_VERSION=1.22.1
 ENV DENO_VERSION=2.2.4
 ENV ZOLA_VERSION=0.20.0
-ENV NICKEL_VERSION=1.10.0
+ENV NICKEL_VERSION=1.11.0
 ENV TAPLO_VERSION=0.9.3
-ENV CARAPACE_VERSION=1.2.1
+ENV CARAPACE_VERSION=1.3.1
 ENV JUJUTSU_VERSION=0.26.0
 ENV CROSS_VERSION=0.2.5
 ENV MPROCS_VERSION=0.7.2
@@ -25,7 +25,7 @@ ADD --checksum=sha256:9f0be0f1348a2372b7c08d0130cae994ee9061f9a6c2eebe458f9266cd
 RUN mkdir /opt/jujutsu && unar /jj.tar.gz -o /tmp/jujutsu && mv /tmp/jujutsu/**/* /opt/jujutsu
 
 # unpack nushell
-ADD --checksum=sha256:c4d9a3388d893e8c923b1a5363dbb9c7f081b71a4a5867767d7907632ecc0929 https://github.com/nushell/nushell/releases/download/${NUSHELL_VERSION}/nu-${NUSHELL_VERSION}-x86_64-unknown-linux-musl.tar.gz  /nu.tar.gz
+ADD --checksum=sha256:90372b5a48b048b9e91637b44b4a060646b5617b5e82d22d6ba5b5d63eaeb602 https://github.com/nushell/nushell/releases/download/${NUSHELL_VERSION}/nu-${NUSHELL_VERSION}-x86_64-unknown-linux-musl.tar.gz  /nu.tar.gz
 RUN mkdir /opt/nushell && unar /nu.tar.gz -o /tmp/nu && mv /tmp/nu/**/* /opt/nushell
 
 #unpack typst
@@ -37,11 +37,11 @@ ADD --checksum=sha256:b1c321a817d8a5baf55c2798f6ac7495bba925d686d9877e9604a50784
 RUN mkdir /opt/zellij && unar /zellij.tar.xz -o /tmp/zellij && mv /tmp/zellij/* /opt/zellij
 
 # unpack cuelang
-ADD --checksum=sha256:60c46ec5b90190c22a96ab3529ad363d03b687331bbeb6d7d8097a2983d7716d https://github.com/cue-lang/cue/releases/download/v${CUELANG_VERSION}/cue_v${CUELANG_VERSION}_linux_amd64.tar.gz /cue.tar.gz
+ADD --checksum=sha256:40ef0a84594494c953945fb297842d3168c92170694928c9565cc0b581235ac5 https://github.com/cue-lang/cue/releases/download/v${CUELANG_VERSION}/cue_v${CUELANG_VERSION}_linux_amd64.tar.gz /cue.tar.gz
 RUN mkdir /opt/cuelang && unar /cue.tar.gz -o /tmp/cue && mv /tmp/cue/cue/* /opt/cuelang
 
 # unpack gleam
-ADD --checksum=sha256:e8757a6585b0d6dcd0718c3ddd4a847a4c906ef6cea7071a4e9abd2242ebbc75 https://github.com/gleam-lang/gleam/releases/download/v${GLEAM_VERSION}/gleam-v${GLEAM_VERSION}-x86_64-unknown-linux-musl.tar.gz /gleam.tar.gz
+ADD --checksum=sha256:6ea95309e39e3abf56fe9a361dd079d502b5a944f8612d909d7f56c2fdc10a71 https://github.com/gleam-lang/gleam/releases/download/v${GLEAM_VERSION}/gleam-v${GLEAM_VERSION}-x86_64-unknown-linux-musl.tar.gz /gleam.tar.gz
 RUN mkdir /opt/gleam && unar /gleam.tar.gz -o /tmp/gleam && mv /tmp/gleam/* /opt/gleam
 
 # unpack starship
@@ -62,8 +62,8 @@ ADD --checksum=sha256:ca7ed5b33a739c5b5b35a0e207e5c3578a652cd12b61c675763b3ff34c
 RUN mkdir /opt/zola && unar /zola.tar.gz -o /tmp/zola && mv /tmp/zola/* /opt/zola
 
 #unpack nickel
-ADD --checksum=sha256:871eff55beaf30cf516ac57eaba3f9bcc2f7070543370f9be796aaf2e0d832da https://github.com/tweag/nickel/releases/download/${NICKEL_VERSION}/nickel-x86_64-linux /nickel
-ADD --checksum=sha256:9bf94cf85cab6f89b4b3e9edeff4fe41df81a3edd024c610e27cfc706e6f3e60 https://github.com/tweag/nickel/releases/download/${NICKEL_VERSION}/nls-x86_64-linux /nls
+ADD --checksum=sha256:d40cd32b8374636fda8939a8e479616c7a1db57acb5ef5a9621e242ed8f5a361 https://github.com/tweag/nickel/releases/download/${NICKEL_VERSION}/nickel-x86_64-linux /nickel
+ADD --checksum=sha256:ddb71a410eaba865af73661ee7a902d959435c245671fbbeebeba38b82f8fc67 https://github.com/tweag/nickel/releases/download/${NICKEL_VERSION}/nls-x86_64-linux /nls
 RUN mkdir /opt/nickel && mv /nls /opt/nickel/nls && chmod +x /opt/nickel/nls && mv /nickel /opt/nickel/nickel && chmod +x /opt/nickel/nickel 
 
 
@@ -73,7 +73,7 @@ RUN mkdir /opt/taplo &&  unar /taplo.gz -o /opt/taplo/ && chmod +x /opt/taplo/ta
 
 
 #unpack carapace
-ADD --checksum=sha256:78f87b0f23aec24de91e14872cf4fdbf2a73958d5e658bf5fa93398ed315165f https://github.com/carapace-sh/carapace-bin/releases/download/v${CARAPACE_VERSION}/carapace-bin_${CARAPACE_VERSION}_linux_amd64.tar.gz /carapace.tar.gz
+ADD --checksum=sha256:7d1152a064da383a2d67cb60e6e44bb09c5751c095919d00711a246099806d57 https://github.com/carapace-sh/carapace-bin/releases/download/v${CARAPACE_VERSION}/carapace-bin_${CARAPACE_VERSION}_linux_amd64.tar.gz /carapace.tar.gz
 RUN mkdir /opt/carapace &&  unar /carapace.tar.gz -o /tmp/carapace/ && mv /tmp/carapace/carapace/* /opt/carapace
 
 
