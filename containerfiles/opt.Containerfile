@@ -1,4 +1,4 @@
-FROM registry.fedoraproject.org/fedora:41 
+FROM registry.fedoraproject.org/fedora:42
 
 RUN dnf install -y unar
 
@@ -7,13 +7,13 @@ ENV TYPST_VERSION=0.13.0
 ENV ZELLIJ_VERSION=0.41.2
 ENV CUELANG_VERSION=0.12.1
 ENV GLEAM_VERSION=1.10.0
-ENV STARSHIP_VERSION=1.22.1
-ENV DENO_VERSION=2.2.4
+ENV STARSHIP_VERSION=1.23.0
+ENV DENO_VERSION=2.3.1
 ENV ZOLA_VERSION=0.20.0
 ENV NICKEL_VERSION=1.11.0
 ENV TAPLO_VERSION=0.9.3
 ENV CARAPACE_VERSION=1.3.1
-ENV JUJUTSU_VERSION=0.26.0
+ENV JUJUTSU_VERSION=0.29.0
 ENV CROSS_VERSION=0.2.5
 ENV MPROCS_VERSION=0.7.2
 ENV REBAR_VERSION=3.24.0
@@ -21,7 +21,7 @@ ENV DIOXUS_VERSION=0.6.3
 ENV CARGO_AUDIT_VERSION=0.21.2
 
 #unpack jujutsu
-ADD --checksum=sha256:9f0be0f1348a2372b7c08d0130cae994ee9061f9a6c2eebe458f9266cd1e0faa https://github.com/jj-vcs/jj/releases/download/v${JUJUTSU_VERSION}/jj-v${JUJUTSU_VERSION}-x86_64-unknown-linux-musl.tar.gz /jj.tar.gz
+ADD --checksum=sha256:0b2d7ca5f77ec6b109fc5b6f9328c8d764825d3976f874c99236481f5461a8a3 https://github.com/jj-vcs/jj/releases/download/v${JUJUTSU_VERSION}/jj-v${JUJUTSU_VERSION}-x86_64-unknown-linux-musl.tar.gz /jj.tar.gz
 RUN mkdir /opt/jujutsu && unar /jj.tar.gz -o /tmp/jujutsu && mv /tmp/jujutsu/**/* /opt/jujutsu
 
 # unpack nushell
@@ -45,7 +45,7 @@ ADD --checksum=sha256:6ea95309e39e3abf56fe9a361dd079d502b5a944f8612d909d7f56c2fd
 RUN mkdir /opt/gleam && unar /gleam.tar.gz -o /tmp/gleam && mv /tmp/gleam/* /opt/gleam
 
 # unpack starship
-ADD --checksum=sha256:62c91b5ecc7f8c8c6ea7ffea42a98bd2e6a2d29daf61562fac04daece18a6461 https://github.com/starship/starship/releases/download/v${STARSHIP_VERSION}/starship-x86_64-unknown-linux-musl.tar.gz /starship.tar.gz
+ADD --checksum=sha256:8d06d2cc67aedd6316ff58ab679fb80cded0d85de1dcd5727df0633d35356d57 https://github.com/starship/starship/releases/download/v${STARSHIP_VERSION}/starship-x86_64-unknown-linux-musl.tar.gz /starship.tar.gz
 RUN mkdir /opt/starship && unar /starship.tar.gz -o /tmp/starship && mv /tmp/starship/* /opt/starship
 
 #unpack intelij
@@ -54,7 +54,7 @@ RUN mkdir /opt/starship && unar /starship.tar.gz -o /tmp/starship && mv /tmp/sta
 # RUN mkdir /opt/intellij && unar /intellij.tar.gz -o /tmp/intellij && mv /tmp/intellij/**/* /opt/intellij
 
 #unpack deno
-ADD --checksum=sha256:9a260a624cab6e61f7603957f94f638d68739d8c6ac8c38bc337521266603a7c https://github.com/denoland/deno/releases/download/v${DENO_VERSION}/deno-x86_64-unknown-linux-gnu.zip /deno.zip
+ADD --checksum=sha256:b2920265e633215959b09a32b67f46c93362842bbfd27c96e8acc2d24b66f563 https://github.com/denoland/deno/releases/download/v${DENO_VERSION}/deno-x86_64-unknown-linux-gnu.zip /deno.zip
 RUN mkdir /opt/deno && unar /deno.zip -o /tmp/deno && mv /tmp/deno/* /opt/deno
 
 #unpack zola
