@@ -6,9 +6,9 @@ ENV NUSHELL_VERSION=0.104.0
 ENV TYPST_VERSION=0.13.0
 ENV ZELLIJ_VERSION=0.41.2
 ENV CUELANG_VERSION=0.12.1
-ENV GLEAM_VERSION=1.10.0
+ENV GLEAM_VERSION=1.11.0
 ENV STARSHIP_VERSION=1.23.0
-ENV DENO_VERSION=2.3.1
+ENV DENO_VERSION=2.3.5
 ENV ZOLA_VERSION=0.20.0
 ENV NICKEL_VERSION=1.11.0
 ENV TAPLO_VERSION=0.9.3
@@ -41,7 +41,7 @@ ADD --checksum=sha256:40ef0a84594494c953945fb297842d3168c92170694928c9565cc0b581
 RUN mkdir /opt/cuelang && unar /cue.tar.gz -o /tmp/cue && mv /tmp/cue/cue/* /opt/cuelang
 
 # unpack gleam
-ADD --checksum=sha256:6ea95309e39e3abf56fe9a361dd079d502b5a944f8612d909d7f56c2fdc10a71 https://github.com/gleam-lang/gleam/releases/download/v${GLEAM_VERSION}/gleam-v${GLEAM_VERSION}-x86_64-unknown-linux-musl.tar.gz /gleam.tar.gz
+ADD --checksum=sha256:19a6a100bf620686fe90a52d31569d4b0a4052ae6a270d08862019f9d3604675 https://github.com/gleam-lang/gleam/releases/download/v${GLEAM_VERSION}/gleam-v${GLEAM_VERSION}-x86_64-unknown-linux-musl.tar.gz /gleam.tar.gz
 RUN mkdir /opt/gleam && unar /gleam.tar.gz -o /tmp/gleam && mv /tmp/gleam/* /opt/gleam
 
 # unpack starship
@@ -54,7 +54,7 @@ RUN mkdir /opt/starship && unar /starship.tar.gz -o /tmp/starship && mv /tmp/sta
 # RUN mkdir /opt/intellij && unar /intellij.tar.gz -o /tmp/intellij && mv /tmp/intellij/**/* /opt/intellij
 
 #unpack deno
-ADD --checksum=sha256:b2920265e633215959b09a32b67f46c93362842bbfd27c96e8acc2d24b66f563 https://github.com/denoland/deno/releases/download/v${DENO_VERSION}/deno-x86_64-unknown-linux-gnu.zip /deno.zip
+ADD --checksum=sha256:096ddb8b151adb26f34ac6a8f2beb774776e4b80173824181eb2d2f81e00d111 https://github.com/denoland/deno/releases/download/v${DENO_VERSION}/deno-x86_64-unknown-linux-gnu.zip /deno.zip
 RUN mkdir /opt/deno && unar /deno.zip -o /tmp/deno && mv /tmp/deno/* /opt/deno
 
 #unpack zola
