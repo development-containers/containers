@@ -2,7 +2,7 @@ FROM alpine:edge
 
 RUN apk update && \
     apk upgrade && \
-    apk add rust-analyzer sqlite gleam typst \
+    apk add rust-analyzer sqlite gleam typst 7zip \
             nushell helix helix-tree-sitter-vendor \
             curl git pijul deno rustup mprocs \
             just bottom zellij eza ripgrep fd python3 \
