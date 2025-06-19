@@ -24,5 +24,5 @@ ENV RUSTUP_HOME=/usr/local/rustup \
     CARGO_HOME=/usr/local/cargo \
     PATH=/usr/local/cargo/bin:$PATH 
 
-RUN rustup-init -y --profile minimal --component clippy rustfmt
+RUN rustup-init -y --profile minimal --component clippy,rustfmt
 
