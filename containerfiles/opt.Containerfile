@@ -19,6 +19,12 @@ ENV MPROCS_VERSION=0.7.2
 ENV REBAR_VERSION=3.24.0
 ENV DIOXUS_VERSION=0.6.3
 ENV CARGO_AUDIT_VERSION=0.21.2
+ENV TINYMIST_VERSION=0.13.14
+
+# unpack tinymist
+ADD --checksum=sha256:ff4cf78d93d413389dabe49d4afd651cc4fc37ef8dd64d2d950cdaa514f9649d https://github.com/Myriad-Dreamin/tinymist/releases/download/v${TINYMIST_VERSION}/tinymist-x86_64-unknown-linux-gnu.tar.gz /tinymist.tar.gz
+RUN mkdir /opt/tinymist && unar /tinymist.tar.gz -o /tmp/tinymist && mv /tmp/tinymist/**/* /opt/tinymist
+
 
 #unpack jujutsu
 ADD --checksum=sha256:0b2d7ca5f77ec6b109fc5b6f9328c8d764825d3976f874c99236481f5461a8a3 https://github.com/jj-vcs/jj/releases/download/v${JUJUTSU_VERSION}/jj-v${JUJUTSU_VERSION}-x86_64-unknown-linux-musl.tar.gz /jj.tar.gz
