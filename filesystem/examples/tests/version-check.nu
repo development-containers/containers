@@ -47,6 +47,7 @@ let versions1 = [
 ]
 
 let versions2 = [
+    (x Myriad-Dreamin tinymist)
     (x LukeMathWalker cargo-chef)
     (x cross-rs cross)
     (get_versions rustsec rustsec cargo-audit)
