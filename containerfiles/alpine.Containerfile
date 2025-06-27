@@ -2,7 +2,7 @@ FROM alpine:edge
 
 RUN apk update && \
     apk upgrade && \
-    apk add rust-analyzer sqlite gleam typst 7zip \
+    apk add sqlite gleam typst 7zip \
             nushell helix helix-tree-sitter-vendor \
             curl git pijul deno rustup mprocs wget \
             just bottom zellij eza ripgrep fd python3 \
@@ -10,7 +10,7 @@ RUN apk update && \
             zola nickel nickel-language-server starship taplo carapace jujutsu \
             bat erlang rebar3 inotify-tools litecli tokei hexyl age pandoc
 # TODO: unar https://gitlab.alpinelinux.org/alpine/aports/-/issues/5846
-RUN rustup-init -y 
+RUN rustup-init -y && rustup component add rust-analyzer
 
 COPY ./filesystem/config /root/.config
 COPY ./filesystem/examples /examples
