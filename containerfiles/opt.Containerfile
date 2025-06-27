@@ -2,7 +2,7 @@ FROM registry.fedoraproject.org/fedora:42
 
 RUN dnf install -y unar
 
-ENV NUSHELL_VERSION=0.104.0
+ENV NUSHELL_VERSION=0.105.1
 ENV TYPST_VERSION=0.13.0
 ENV ZELLIJ_VERSION=0.41.2
 ENV CUELANG_VERSION=0.12.1
@@ -31,7 +31,7 @@ ADD --checksum=sha256:0b2d7ca5f77ec6b109fc5b6f9328c8d764825d3976f874c99236481f54
 RUN mkdir /opt/jujutsu && unar /jj.tar.gz -o /tmp/jujutsu && mv /tmp/jujutsu/**/* /opt/jujutsu
 
 # unpack nushell
-ADD --checksum=sha256:90372b5a48b048b9e91637b44b4a060646b5617b5e82d22d6ba5b5d63eaeb602 https://github.com/nushell/nushell/releases/download/${NUSHELL_VERSION}/nu-${NUSHELL_VERSION}-x86_64-unknown-linux-musl.tar.gz  /nu.tar.gz
+ADD --checksum=sha256:ed26ae2708b1b74e8d84cda001ebd4b3b6b17b3292c123aef523a22bff463338 https://github.com/nushell/nushell/releases/download/${NUSHELL_VERSION}/nu-${NUSHELL_VERSION}-x86_64-unknown-linux-musl.tar.gz  /nu.tar.gz
 RUN mkdir /opt/nushell && unar /nu.tar.gz -o /tmp/nu && mv /tmp/nu/**/* /opt/nushell
 
 #unpack typst
