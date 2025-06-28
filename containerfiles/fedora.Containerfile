@@ -25,7 +25,7 @@ ENV SHELL="nu"
 ENV EDITOR="hx"
 ENV VISUAL="hx"
 
-RUN rustup-init -y && rustup component add rust-analyzer
+RUN rustup-init -y && bash -lc 'rustup component add rust-analyzer'
 
 
 

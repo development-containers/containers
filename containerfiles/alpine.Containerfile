@@ -10,7 +10,7 @@ RUN apk update && \
             zola nickel nickel-language-server starship taplo carapace jujutsu \
             bat erlang rebar3 inotify-tools litecli tokei hexyl age pandoc
 # TODO: unar https://gitlab.alpinelinux.org/alpine/aports/-/issues/5846
-RUN rustup-init -y && rustup component add rust-analyzer
+RUN rustup-init -y && bash -lc 'rustup component add rust-analyzer'
 
 COPY ./filesystem/config /root/.config
 COPY ./filesystem/examples /examples
