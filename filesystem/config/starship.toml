@@ -25,6 +25,7 @@ $conda\
 $time\
 [ ](fg:lavender)\
 $cmd_duration\
+$status\
 $fill\
 $all\
 $line_break\
@@ -158,15 +159,18 @@ vimcmd_replace_symbol = '[❮](bold fg:lavender)'
 vimcmd_visual_symbol = '[❮](bold fg:yellow)'
 
 [cmd_duration]
-show_milliseconds = true
-format = " in $duration "
+format = "took $duration "
 style = "bg:lavender"
 disabled = false
 show_notifications = true
 min_time_to_notify = 45000
 
 [status]
-disabled = false
+format = '[](color_red)[($common_meaning )$status]($style)[](color_red) '
+disabled=false
+symbol="ERROR "
+style="bg:color_red fg:white bold"
+
 
 [fill]
 symbol = ' '

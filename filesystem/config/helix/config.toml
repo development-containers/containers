@@ -4,7 +4,7 @@ theme = "jellybeans"
 bufferline = "multiple"
 color-modes = true
 true-color = true
-
+cursorline = true
 
 [editor.cursor-shape]
 insert = "bar"

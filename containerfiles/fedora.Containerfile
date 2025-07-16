@@ -30,7 +30,6 @@ RUN rustup-init -y && bash -lc 'rustup component add rust-analyzer'
 
 
 
-# TODO: configure starship prompt to be *fancy*
 # TODO: kotlin
 # TODO: lume example project
 # TODO: kotlin spring example project
