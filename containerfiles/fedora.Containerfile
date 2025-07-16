@@ -16,10 +16,11 @@ COPY --from=opt /opt/ /opt/
 COPY ./filesystem/config /root/.config
 COPY ./filesystem/examples /examples
 
-ENV PATH="$PATH:/opt/cross/:/opt/dioxus/:/opt/cargo-audit:/opt/cargo-chef:/opt/nushell/:/opt/jujutsu:/opt/typst:/opt/zellij:opt/typst:/opt/starship:/opt/deno:/opt/intellij/bin:/opt/cuelang:/opt/gleam:/opt/zola:/opt/nickel:/opt/taplo:/opt/carapace:/opt/rebar3:/opt/mprocs:/opt/tinymist"
+ENV PATH="$PATH:/opt/cross/:/opt/dioxus/:/opt/cargo-audit:/opt/cargo-chef:/opt/nushell/:/opt/jujutsu:/opt/typst:/opt/zellij:/opt/starship:/opt/deno:/opt/intellij/bin:/opt/cuelang:/opt/gleam:/opt/zola:/opt/nickel:/opt/taplo:/opt/carapace:/opt/rebar3:/opt/mprocs:/opt/tinymist"
 ENV PATH="/root/.local/share/mise/shims/:/root/.local/bin/:$PATH"
 RUN curl https://mise.run | sh
 RUN mise use --global erlang@27
+RUN npm i -g vscode-langservers-extracted@4.10.0
 
 ENV SHELL="nu"
 ENV EDITOR="hx"
