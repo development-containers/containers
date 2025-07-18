@@ -6,7 +6,7 @@ RUN apk update && \
             nushell helix helix-tree-sitter-vendor \
             curl git pijul deno rustup mprocs wget \
             just bottom zellij eza ripgrep fd python3 \
-            bash difftastic openjdk21-jdk grep cue-cli mandoc man-pages \
+            bash difftastic openjdk21-jdk grep cue-cli docs \
             zola nickel nickel-language-server starship taplo carapace jujutsu \
             bat erlang rebar3 inotify-tools litecli tokei hexyl age pandoc clang jdtls
 # TODO: unar https://gitlab.alpinelinux.org/alpine/aports/-/issues/5846
