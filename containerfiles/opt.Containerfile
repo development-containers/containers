@@ -2,18 +2,18 @@ FROM registry.fedoraproject.org/fedora:42
 
 RUN dnf install -y unar
 
-ENV NUSHELL_VERSION=0.105.1
+ENV NUSHELL_VERSION=0.106.0
 ENV TYPST_VERSION=0.13.0
 ENV ZELLIJ_VERSION=0.41.2
 ENV CUELANG_VERSION=0.12.1
 ENV GLEAM_VERSION=1.11.0
 ENV STARSHIP_VERSION=1.23.0
-ENV DENO_VERSION=2.3.5
-ENV ZOLA_VERSION=0.20.0
+ENV DENO_VERSION=2.4.2
+ENV ZOLA_VERSION=0.21.0
 ENV NICKEL_VERSION=1.11.0
 ENV TAPLO_VERSION=0.9.3
 ENV CARAPACE_VERSION=1.3.3 
-ENV JUJUTSU_VERSION=0.29.0
+ENV JUJUTSU_VERSION=0.31.0
 ENV CROSS_VERSION=0.2.5
 ENV MPROCS_VERSION=0.7.2
 ENV REBAR_VERSION=3.24.0
@@ -27,11 +27,11 @@ RUN mkdir /opt/tinymist && unar /tinymist.tar.gz -o /tmp/tinymist && mv /tmp/tin
 
 
 #unpack jujutsu
-ADD --checksum=sha256:0b2d7ca5f77ec6b109fc5b6f9328c8d764825d3976f874c99236481f5461a8a3 https://github.com/jj-vcs/jj/releases/download/v${JUJUTSU_VERSION}/jj-v${JUJUTSU_VERSION}-x86_64-unknown-linux-musl.tar.gz /jj.tar.gz
+ADD --checksum=sha256:b217d8c1e8617096e8d420bb18b208267fa3d5702a85bec87731d1390a980711 https://github.com/jj-vcs/jj/releases/download/v${JUJUTSU_VERSION}/jj-v${JUJUTSU_VERSION}-x86_64-unknown-linux-musl.tar.gz /jj.tar.gz
 RUN mkdir /opt/jujutsu && unar /jj.tar.gz -o /tmp/jujutsu && mv /tmp/jujutsu/**/* /opt/jujutsu
 
 # unpack nushell
-ADD --checksum=sha256:ed26ae2708b1b74e8d84cda001ebd4b3b6b17b3292c123aef523a22bff463338 https://github.com/nushell/nushell/releases/download/${NUSHELL_VERSION}/nu-${NUSHELL_VERSION}-x86_64-unknown-linux-musl.tar.gz  /nu.tar.gz
+ADD --checksum=sha256:7a10a46d7000d0817abfc18562d0e6e53a8f6ed9b73c8a1877082ff7bb31ffe8 https://github.com/nushell/nushell/releases/download/${NUSHELL_VERSION}/nu-${NUSHELL_VERSION}-x86_64-unknown-linux-musl.tar.gz  /nu.tar.gz
 RUN mkdir /opt/nushell && unar /nu.tar.gz -o /tmp/nu && mv /tmp/nu/**/* /opt/nushell
 
 #unpack typst
@@ -60,11 +60,11 @@ RUN mkdir /opt/starship && unar /starship.tar.gz -o /tmp/starship && mv /tmp/sta
 # RUN mkdir /opt/intellij && unar /intellij.tar.gz -o /tmp/intellij && mv /tmp/intellij/**/* /opt/intellij
 
 #unpack deno
-ADD --checksum=sha256:096ddb8b151adb26f34ac6a8f2beb774776e4b80173824181eb2d2f81e00d111 https://github.com/denoland/deno/releases/download/v${DENO_VERSION}/deno-x86_64-unknown-linux-gnu.zip /deno.zip
+ADD --checksum=sha256:d84778633215b7cb93cf7690860d6241f632b087bd2a19de12cd410e6b2e157a https://github.com/denoland/deno/releases/download/v${DENO_VERSION}/deno-x86_64-unknown-linux-gnu.zip /deno.zip
 RUN mkdir /opt/deno && unar /deno.zip -o /tmp/deno && mv /tmp/deno/* /opt/deno
 
 #unpack zola
-ADD --checksum=sha256:ca7ed5b33a739c5b5b35a0e207e5c3578a652cd12b61c675763b3ff34c322d08 https://github.com/getzola/zola/releases/download/v${ZOLA_VERSION}/zola-v${ZOLA_VERSION}-x86_64-unknown-linux-gnu.tar.gz /zola.tar.gz
+ADD --checksum=sha256:5c37a8f706567d6cad3f0dbc0eaebe3b9591cc301bd67089e5ddc0d0401732d6 https://github.com/getzola/zola/releases/download/v${ZOLA_VERSION}/zola-v${ZOLA_VERSION}-x86_64-unknown-linux-gnu.tar.gz /zola.tar.gz
 RUN mkdir /opt/zola && unar /zola.tar.gz -o /tmp/zola && mv /tmp/zola/* /opt/zola
 
 #unpack nickel
