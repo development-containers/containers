@@ -2,17 +2,17 @@ FROM registry.fedoraproject.org/fedora:42
 
 RUN dnf install -y unar
 
-ENV NUSHELL_VERSION=0.106.0
+ENV NUSHELL_VERSION=0.106.1
 ENV TYPST_VERSION=0.13.0
 ENV ZELLIJ_VERSION=0.41.2
 ENV CUELANG_VERSION=0.12.1
-ENV GLEAM_VERSION=1.11.0
+ENV GLEAM_VERSION=1.12.0
 ENV STARSHIP_VERSION=1.23.0
 ENV DENO_VERSION=2.4.2
 ENV ZOLA_VERSION=0.21.0
 ENV NICKEL_VERSION=1.11.0
 ENV TAPLO_VERSION=0.9.3
-ENV CARAPACE_VERSION=1.3.3 
+ENV CARAPACE_VERSION=1.4.1
 ENV JUJUTSU_VERSION=0.31.0
 ENV CROSS_VERSION=0.2.5
 ENV MPROCS_VERSION=0.7.2
@@ -31,7 +31,7 @@ ADD --checksum=sha256:b217d8c1e8617096e8d420bb18b208267fa3d5702a85bec87731d1390a
 RUN mkdir /opt/jujutsu && unar /jj.tar.gz -o /tmp/jujutsu && mv /tmp/jujutsu/**/* /opt/jujutsu
 
 # unpack nushell
-ADD --checksum=sha256:7a10a46d7000d0817abfc18562d0e6e53a8f6ed9b73c8a1877082ff7bb31ffe8 https://github.com/nushell/nushell/releases/download/${NUSHELL_VERSION}/nu-${NUSHELL_VERSION}-x86_64-unknown-linux-musl.tar.gz  /nu.tar.gz
+ADD --checksum=sha256:e4cf2553355ad507fe6fc0e927cdc649a8c60dcb23ef6b0a9809094dd918f3d5 https://github.com/nushell/nushell/releases/download/${NUSHELL_VERSION}/nu-${NUSHELL_VERSION}-x86_64-unknown-linux-musl.tar.gz  /nu.tar.gz
 RUN mkdir /opt/nushell && unar /nu.tar.gz -o /tmp/nu && mv /tmp/nu/**/* /opt/nushell
 
 #unpack typst
@@ -47,7 +47,7 @@ ADD --checksum=sha256:40ef0a84594494c953945fb297842d3168c92170694928c9565cc0b581
 RUN mkdir /opt/cuelang && unar /cue.tar.gz -o /tmp/cue && mv /tmp/cue/cue/* /opt/cuelang
 
 # unpack gleam
-ADD --checksum=sha256:19a6a100bf620686fe90a52d31569d4b0a4052ae6a270d08862019f9d3604675 https://github.com/gleam-lang/gleam/releases/download/v${GLEAM_VERSION}/gleam-v${GLEAM_VERSION}-x86_64-unknown-linux-musl.tar.gz /gleam.tar.gz
+ADD --checksum=sha256:039a87bd7294d3cfd2425f56e8ffef508b170ecec42e760806833fb1e0319d49 https://github.com/gleam-lang/gleam/releases/download/v${GLEAM_VERSION}/gleam-v${GLEAM_VERSION}-x86_64-unknown-linux-musl.tar.gz /gleam.tar.gz
 RUN mkdir /opt/gleam && unar /gleam.tar.gz -o /tmp/gleam && mv /tmp/gleam/* /opt/gleam
 
 # unpack starship
@@ -79,7 +79,7 @@ RUN mkdir /opt/taplo &&  unar /taplo.gz -o /opt/taplo/ && chmod +x /opt/taplo/ta
 
 
 #unpack carapace
-ADD --checksum=sha256:8945537e8f4ec09c17577955e226b7fc74c419d0c2bff8608fad6720ba2599d2 https://github.com/carapace-sh/carapace-bin/releases/download/v${CARAPACE_VERSION}/carapace-bin_${CARAPACE_VERSION}_linux_amd64.tar.gz /carapace.tar.gz
+ADD --checksum=sha256:fad6a1aa31d021de3cc4389a1010ac160eae9dd8328aba68c489387e333062d0 https://github.com/carapace-sh/carapace-bin/releases/download/v${CARAPACE_VERSION}/carapace-bin_${CARAPACE_VERSION}_linux_amd64.tar.gz /carapace.tar.gz
 RUN mkdir /opt/carapace &&  unar /carapace.tar.gz -o /tmp/carapace/ && mv /tmp/carapace/carapace/* /opt/carapace
 
 
