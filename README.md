@@ -21,10 +21,12 @@ For an example see this table:
 
 | Scope    | Legacy Technology    | Modern Replacement |
 | ------------- | ------------- | --- |
-| editor | vim | helix |
-| web application programming | go python nodejs | rust gleam kotlin deno |
-| terminal multiplexing | screen | mprocs zellij |
-| task runner | make | just |
-| searching | find grep | fd rg |
-| documents | LaTeX | typst |
-| scripting | python bash | just nushell |
+| Editor | (neo)vim emacs | helix |
+| Web application programming | go python nodejs | rust gleam kotlin deno |
+| Terminal multiplexing | screen tmux | mprocs zellij |
+| Task runner | make | just |
+| Searching | find grep | fd rg |
+| Documents | LaTeX | typst |
+| Scripting | python bash | just nushell |
+| Version control | git | pijul jj |
+| Containerization | docker | podman |
