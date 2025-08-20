@@ -20,11 +20,16 @@ ENV REBAR_VERSION=3.24.0
 ENV DIOXUS_VERSION=0.6.3
 ENV CARGO_AUDIT_VERSION=0.21.2
 ENV TINYMIST_VERSION=0.13.14
+ENV JDTLS_VERSION=1.49.0
 
 # unpack tinymist
 ADD --checksum=sha256:ff4cf78d93d413389dabe49d4afd651cc4fc37ef8dd64d2d950cdaa514f9649d https://github.com/Myriad-Dreamin/tinymist/releases/download/v${TINYMIST_VERSION}/tinymist-x86_64-unknown-linux-gnu.tar.gz /tinymist.tar.gz
 RUN mkdir /opt/tinymist && unar /tinymist.tar.gz -o /tmp/tinymist && mv /tmp/tinymist/**/* /opt/tinymist
 
+
+# unpack JDTLS
+ADD --checksum=sha256:a3f9fb5921f5273d0f8fe4365b363fbad1bdc2e86991db3149b2d76f1265bcd7 https://www.eclipse.org/downloads/download.php?file=/jdtls/milestones/${JDTLS_VERSION}/jdt-language-server-${JDTLS_VERSION}-202507311558.tar.gz /jdtls.tar.gz
+RUN mkdir /opt/jdtls && unar /jdtls.tar.gz -o /opt/jdtls
 
 #unpack jujutsu
 ADD --checksum=sha256:b217d8c1e8617096e8d420bb18b208267fa3d5702a85bec87731d1390a980711 https://github.com/jj-vcs/jj/releases/download/v${JUJUTSU_VERSION}/jj-v${JUJUTSU_VERSION}-x86_64-unknown-linux-musl.tar.gz /jj.tar.gz
