@@ -22,4 +22,4 @@ display-progress-messages = true
 
 [editor.inline-diagnostics]
 cursor-line = "hint"
-other-lines = "warning"
+#other-lines = "warning"
