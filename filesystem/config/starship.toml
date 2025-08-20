@@ -166,10 +166,10 @@ show_notifications = true
 min_time_to_notify = 45000
 
 [status]
-format = '[](color_red)[($common_meaning )$status]($style)[](color_red) '
+format = '[](red)[($common_meaning )$status]($style)[](red) '
 disabled=false
 symbol="ERROR "
-style="bg:color_red fg:white bold"
+style="bg:red fg:white bold"
 
 
 [fill]
