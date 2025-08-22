@@ -13,14 +13,24 @@ RUN dnf install -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-rele
 
 # ------
 COPY --from=opt /opt/ /opt/
-COPY ./filesystem/config /root/.config
-COPY ./filesystem/examples /examples
+
+RUN npm i -g vscode-langservers-extracted@4.10.0
+
+# Add a `developer` user and make them able to use sudo without password
+RUN useradd developer -G wheel
+RUN echo "%wheel ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+USER developer
+
+COPY --chown=developer:developer  ./filesystem/examples /examples
+COPY --chown=developer:developer ./filesystem/config /home/developer/.config
 
 ENV PATH="$PATH:/opt/jdtls/bin:/opt/cross/:/opt/dioxus/:/opt/cargo-audit:/opt/cargo-chef:/opt/nushell/:/opt/jujutsu:/opt/typst:/opt/zellij:/opt/starship:/opt/deno:/opt/intellij/bin:/opt/cuelang:/opt/gleam:/opt/zola:/opt/nickel:/opt/taplo:/opt/carapace:/opt/rebar3:/opt/mprocs:/opt/tinymist"
-ENV PATH="/root/.local/share/mise/shims/:/root/.local/bin/:$PATH"
+ENV PATH="/home/developer/.local/share/mise/shims/:/home/developer/.local/bin/:$PATH"
+
+
+RUN sh <(curl --proto '=https' --tlsv1.2 -L https://nixos.org/nix/install) --no-daemon
 RUN curl https://mise.run | sh
 RUN mise use --global erlang@27
-RUN npm i -g vscode-langservers-extracted@4.10.0
 
 ENV SHELL="nu"
 ENV EDITOR="hx"
