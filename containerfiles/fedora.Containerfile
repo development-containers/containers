@@ -46,4 +46,4 @@ RUN rustup-init -y && bash -lc 'rustup component add rust-analyzer'
 # TODO: nickel and cuelang example files
 # TODO: typst example file
 
-ENTRYPOINT [ "sh", "-l", "-c", "zellij"]
+ENTRYPOINT [ "bash", "-l", "-c", "zellij"]
