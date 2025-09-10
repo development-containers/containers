@@ -90,7 +90,7 @@ RUN mkdir /opt/carapace &&  unar /carapace.tar.gz -o /tmp/carapace/ && mv /tmp/c
 
 #unpack rebar3
 ADD --checksum=sha256:d2d31cfb98904b8e4917300a75f870de12cb5167cd6214d1043e973a56668a54 https://github.com/erlang/rebar3/releases/download/${REBAR_VERSION}/rebar3 /opt/rebar3/rebar3
-RUN chmod +x /opt/rebar3/rebar3
+RUN chmod +xr /opt/rebar3/rebar3
 
 #unpack mprocs
 ADD --checksum=sha256:8708b84540cbde9fcff123528a7b0a679eaf7b73bc2e070ba4b96e741ea00b03 https://github.com/pvolok/mprocs/releases/download/v${MPROCS_VERSION}/mprocs-${MPROCS_VERSION}-linux-x86_64-musl.tar.gz /mprocs.tar.gz
