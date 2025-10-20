@@ -55,6 +55,7 @@ let versions2 = [
     (x pvolok mprocs)
     (x jgm pandoc)
     (x XAMPPRocky tokei)
+    (get_versions eclipse-jdtls eclipse.jdt.ls jdtls)
     (get_versions Wilfred difftastic difft)
     (x sharkdp bat)
     (x sharkdp hexyl)

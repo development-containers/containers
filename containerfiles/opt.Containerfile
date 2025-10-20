@@ -2,18 +2,18 @@ FROM registry.fedoraproject.org/fedora:42
 
 RUN dnf install -y unar
 
-ENV NUSHELL_VERSION=0.106.1
+ENV NUSHELL_VERSION=0.108.0
 ENV TYPST_VERSION=0.13.0
 ENV ZELLIJ_VERSION=0.41.2
-ENV CUELANG_VERSION=0.12.1
-ENV GLEAM_VERSION=1.12.0
+ENV CUELANG_VERSION=0.14.2
+ENV GLEAM_VERSION=1.13.0
 ENV STARSHIP_VERSION=1.23.0
 ENV DENO_VERSION=2.5.1
 ENV ZOLA_VERSION=0.21.0
-ENV NICKEL_VERSION=1.11.0
-ENV TAPLO_VERSION=0.9.3
+ENV NICKEL_VERSION=1.14.0
+ENV TAPLO_VERSION=0.10.0
 ENV CARAPACE_VERSION=1.4.1
-ENV JUJUTSU_VERSION=0.31.0
+ENV JUJUTSU_VERSION=0.34.0
 ENV CROSS_VERSION=0.2.5
 ENV MPROCS_VERSION=0.7.2
 ENV REBAR_VERSION=3.24.0
@@ -32,11 +32,11 @@ ADD --checksum=sha256:a3f9fb5921f5273d0f8fe4365b363fbad1bdc2e86991db3149b2d76f12
 RUN mkdir /opt/jdtls && unar /jdtls.tar.gz -o /opt/jdtls
 
 #unpack jujutsu
-ADD --checksum=sha256:b217d8c1e8617096e8d420bb18b208267fa3d5702a85bec87731d1390a980711 https://github.com/jj-vcs/jj/releases/download/v${JUJUTSU_VERSION}/jj-v${JUJUTSU_VERSION}-x86_64-unknown-linux-musl.tar.gz /jj.tar.gz
+ADD --checksum=sha256:1e8e1ede656fecba91ceb8248a76402a110017ad677d0ecfd1f2040f5543cfa3 https://github.com/jj-vcs/jj/releases/download/v${JUJUTSU_VERSION}/jj-v${JUJUTSU_VERSION}-x86_64-unknown-linux-musl.tar.gz /jj.tar.gz
 RUN mkdir /opt/jujutsu && unar /jj.tar.gz -o /tmp/jujutsu && mv /tmp/jujutsu/**/* /opt/jujutsu
 
 # unpack nushell
-ADD --checksum=sha256:e4cf2553355ad507fe6fc0e927cdc649a8c60dcb23ef6b0a9809094dd918f3d5 https://github.com/nushell/nushell/releases/download/${NUSHELL_VERSION}/nu-${NUSHELL_VERSION}-x86_64-unknown-linux-musl.tar.gz  /nu.tar.gz
+ADD --checksum=sha256:3a3695d3fbaae1553229e263143ee02359f703efbc982bb1b475d2769d4ff6d9 https://github.com/nushell/nushell/releases/download/${NUSHELL_VERSION}/nu-${NUSHELL_VERSION}-x86_64-unknown-linux-musl.tar.gz  /nu.tar.gz
 RUN mkdir /opt/nushell && unar /nu.tar.gz -o /tmp/nu && mv /tmp/nu/**/* /opt/nushell
 
 #unpack typst
@@ -48,11 +48,11 @@ ADD --checksum=sha256:b1c321a817d8a5baf55c2798f6ac7495bba925d686d9877e9604a50784
 RUN mkdir /opt/zellij && unar /zellij.tar.xz -o /tmp/zellij && mv /tmp/zellij/* /opt/zellij
 
 # unpack cuelang
-ADD --checksum=sha256:40ef0a84594494c953945fb297842d3168c92170694928c9565cc0b581235ac5 https://github.com/cue-lang/cue/releases/download/v${CUELANG_VERSION}/cue_v${CUELANG_VERSION}_linux_amd64.tar.gz /cue.tar.gz
+ADD --checksum=sha256:de6bcd5a601ca53dde09de8e5f884a4bad23c91306f04ca6a6ce11dab48a8307 https://github.com/cue-lang/cue/releases/download/v${CUELANG_VERSION}/cue_v${CUELANG_VERSION}_linux_amd64.tar.gz /cue.tar.gz
 RUN mkdir /opt/cuelang && unar /cue.tar.gz -o /tmp/cue && mv /tmp/cue/cue/* /opt/cuelang
 
 # unpack gleam
-ADD --checksum=sha256:039a87bd7294d3cfd2425f56e8ffef508b170ecec42e760806833fb1e0319d49 https://github.com/gleam-lang/gleam/releases/download/v${GLEAM_VERSION}/gleam-v${GLEAM_VERSION}-x86_64-unknown-linux-musl.tar.gz /gleam.tar.gz
+ADD --checksum=sha256:8b372488e5ccaa54d8acc2feb9852c9e7916e480566049edd565caa1d8c74eec https://github.com/gleam-lang/gleam/releases/download/v${GLEAM_VERSION}/gleam-v${GLEAM_VERSION}-x86_64-unknown-linux-musl.tar.gz /gleam.tar.gz
 RUN mkdir /opt/gleam && unar /gleam.tar.gz -o /tmp/gleam && mv /tmp/gleam/* /opt/gleam
 
 # unpack starship
@@ -73,13 +73,13 @@ ADD --checksum=sha256:5c37a8f706567d6cad3f0dbc0eaebe3b9591cc301bd67089e5ddc0d040
 RUN mkdir /opt/zola && unar /zola.tar.gz -o /tmp/zola && mv /tmp/zola/* /opt/zola
 
 #unpack nickel
-ADD --checksum=sha256:d40cd32b8374636fda8939a8e479616c7a1db57acb5ef5a9621e242ed8f5a361 https://github.com/tweag/nickel/releases/download/${NICKEL_VERSION}/nickel-x86_64-linux /nickel
-ADD --checksum=sha256:ddb71a410eaba865af73661ee7a902d959435c245671fbbeebeba38b82f8fc67 https://github.com/tweag/nickel/releases/download/${NICKEL_VERSION}/nls-x86_64-linux /nls
+ADD --checksum=sha256:a60b39a5e294dcca52d71e3acf19c4e7358e62a724abbccb20392fed57331660 https://github.com/tweag/nickel/releases/download/${NICKEL_VERSION}/nickel-x86_64-linux /nickel
+ADD --checksum=sha256:6dd187e4eaf102393870f067a47df2cf55ebb5f67ae053d3e2b83957b5bc66f5 https://github.com/tweag/nickel/releases/download/${NICKEL_VERSION}/nls-x86_64-linux /nls
 RUN mkdir /opt/nickel && mv /nls /opt/nickel/nls && chmod +x /opt/nickel/nls && mv /nickel /opt/nickel/nickel && chmod +x /opt/nickel/nickel 
 
 
 #unpack taplo
-ADD --checksum=sha256:889efcfa067b179fda488427d3b13ce2d679537da8b9ed8138ba415db7da2a5e https://github.com/tamasfe/taplo/releases/download/${TAPLO_VERSION}/taplo-linux-x86_64.gz /taplo.gz
+ADD --checksum=sha256:8fe196b894ccf9072f98d4e1013a180306e17d244830b03986ee5e8eabeb6156 https://github.com/tamasfe/taplo/releases/download/${TAPLO_VERSION}/taplo-linux-x86_64.gz /taplo.gz
 RUN mkdir /opt/taplo &&  unar /taplo.gz -o /opt/taplo/ && chmod +x /opt/taplo/taplo
 
 
