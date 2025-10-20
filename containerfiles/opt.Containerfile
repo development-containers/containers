@@ -21,11 +21,15 @@ ENV DIOXUS_VERSION=0.6.3
 ENV CARGO_AUDIT_VERSION=0.21.2
 ENV TINYMIST_VERSION=0.13.14
 ENV JDTLS_VERSION=1.49.0
+ENV K6_VERSION=1.3.0
+
+#unpack k6
+ADD --checksum=sha256:84d26fc1f7bc03e02f2e016b3b1b20c032e05dfe461fca82de4e3a6ebe72ddbd https://github.com/grafana/k6/releases/download/v${K6_VERSION}/k6-v${K6_VERSION}-linux-amd64.tar.gz /k6.tar.gz
+RUN mkdir /opt/k6 &&  unar /k6.tar.gz -o /tmp/k6/ && mv /tmp/k6/**/* /opt/k6
 
 # unpack tinymist
 ADD --checksum=sha256:ff4cf78d93d413389dabe49d4afd651cc4fc37ef8dd64d2d950cdaa514f9649d https://github.com/Myriad-Dreamin/tinymist/releases/download/v${TINYMIST_VERSION}/tinymist-x86_64-unknown-linux-gnu.tar.gz /tinymist.tar.gz
 RUN mkdir /opt/tinymist && unar /tinymist.tar.gz -o /tmp/tinymist && mv /tmp/tinymist/**/* /opt/tinymist
-
 
 # unpack JDTLS
 ADD --checksum=sha256:a3f9fb5921f5273d0f8fe4365b363fbad1bdc2e86991db3149b2d76f1265bcd7 https://www.eclipse.org/downloads/download.php?file=/jdtls/milestones/${JDTLS_VERSION}/jdt-language-server-${JDTLS_VERSION}-202507311558.tar.gz /jdtls.tar.gz
@@ -114,6 +118,8 @@ RUN mkdir /opt/cargo-audit &&  unar /cargo-audit.tar.gz -o /tmp/cargo-audit/ && 
 ENV CARGO_CHEF_VERSION=0.1.71
 ADD --checksum=sha256:0ac1c3668f81dcbc8867e3ba41e939d98ff4a3f4ce1aeda795da138685618815 https://github.com/LukeMathWalker/cargo-chef/releases/download/v${CARGO_CHEF_VERSION}/cargo-chef-x86_64-unknown-linux-gnu.tar.gz /cargo-chef.tar.gz
 RUN mkdir /opt/cargo-chef &&  unar /cargo-chef.tar.gz -o /tmp/cargo-chef/ && mv /tmp/cargo-chef/* /opt/cargo-chef
+
+
 
 #get red
 #ADD --checksum=sha256:625a7cbe17955022078397567c55c473ca3f8f74a54f2253e8d4ab1bccaa5c11  https://static.red-lang.org/dl/linux/red-cli-066 /tmp/red

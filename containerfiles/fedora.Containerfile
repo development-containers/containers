@@ -24,7 +24,7 @@ USER developer
 COPY --chown=developer:developer  ./filesystem/examples /examples
 COPY --chown=developer:developer ./filesystem/config /home/developer/.config
 
-ENV PATH="$PATH:/opt/jdtls/bin:/opt/cross/:/opt/dioxus/:/opt/cargo-audit:/opt/cargo-chef:/opt/nushell/:/opt/jujutsu:/opt/typst:/opt/zellij:/opt/starship:/opt/deno:/opt/intellij/bin:/opt/cuelang:/opt/gleam:/opt/zola:/opt/nickel:/opt/taplo:/opt/carapace:/opt/rebar3:/opt/mprocs:/opt/tinymist"
+ENV PATH="$PATH:/opt/k6/:/opt/jdtls/bin:/opt/cross/:/opt/dioxus/:/opt/cargo-audit:/opt/cargo-chef:/opt/nushell/:/opt/jujutsu:/opt/typst:/opt/zellij:/opt/starship:/opt/deno:/opt/intellij/bin:/opt/cuelang:/opt/gleam:/opt/zola:/opt/nickel:/opt/taplo:/opt/carapace:/opt/rebar3:/opt/mprocs:/opt/tinymist"
 ENV PATH="/home/developer/.local/share/mise/shims/:/home/developer/.local/bin/:$PATH"
 
 
