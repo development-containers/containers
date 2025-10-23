@@ -8,7 +8,8 @@ RUN dnf install -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-rele
     dnf install -y sqlite rustup helix curl git just awk \
     ripgrep fd python3 bash difftastic unar 7z unzip htop cmake litecli man \
     openssl-devel java-21-openjdk bat tokei hexyl age tree nodejs-bash-language-server \
-    rakudo wget racket pandoc shellcheck inotify-tools g++ automake autoconf ncurses-devel && \
+    rakudo wget racket pandoc shellcheck inotify-tools g++ automake autoconf ncurses-devel \
+    wabt binaryen && \
     dnf clean all
 
 # ------

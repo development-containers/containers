@@ -8,6 +8,8 @@ RUN dnf install -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-rele
     openssl-devel age wget g++ automake autoconf ncurses-devel unar 7z unzip tree python3 && \
     dnf clean all
 
+# TODO: wasm-tools
+
 # ------
 COPY --link --from=opt /opt/deno /opt/deno
 COPY --link --from=opt /opt/nushell /opt/nushell
