@@ -22,6 +22,12 @@ ENV CARGO_AUDIT_VERSION=0.21.2
 ENV TINYMIST_VERSION=0.13.14
 ENV JDTLS_VERSION=1.49.0
 ENV K6_VERSION=1.3.0
+ENV JUST_LSP_VERSION=0.2.7
+
+
+# unpack just-lsp
+ADD --checksum=sha256:998cf9a5cfa09ef832d6c3656488ffd2c714b16f509a5d9d1a36bc2b972988c3 https://github.com/terror/just-lsp/releases/download/${JUST_LSP_VERSION}/just-lsp-${JUST_LSP_VERSION}-x86_64-unknown-linux-gnu.tar.gz /just-lsp.tar.gz
+RUN mkdir /opt/just-lsp &&  unar /just-lsp.tar.gz -o /tmp/just-lsp/ && mv /tmp/just-lsp/**/* /opt/just-lsp
 
 #unpack k6
 ADD --checksum=sha256:84d26fc1f7bc03e02f2e016b3b1b20c032e05dfe461fca82de4e3a6ebe72ddbd https://github.com/grafana/k6/releases/download/v${K6_VERSION}/k6-v${K6_VERSION}-linux-amd64.tar.gz /k6.tar.gz
