@@ -3,7 +3,7 @@ FROM registry.fedoraproject.org/fedora:42
 RUN dnf install -y unar
 
 ENV NUSHELL_VERSION=0.108.0
-ENV TYPST_VERSION=0.13.0
+ENV TYPST_VERSION=0.14.0
 ENV ZELLIJ_VERSION=0.41.2
 ENV CUELANG_VERSION=0.14.2
 ENV GLEAM_VERSION=1.13.0
@@ -44,7 +44,7 @@ ADD --checksum=sha256:3a3695d3fbaae1553229e263143ee02359f703efbc982bb1b475d2769d
 RUN mkdir /opt/nushell && unar /nu.tar.gz -o /tmp/nu && mv /tmp/nu/**/* /opt/nushell
 
 #unpack typst
-ADD --checksum=sha256:cd1148da61d6844e62c330fc6222e988480acafe33b76daec8eb5d221258feb6 https://github.com/typst/typst/releases/download/v${TYPST_VERSION}/typst-x86_64-unknown-linux-musl.tar.xz  /typst.tar.xz
+ADD --checksum=sha256:99816d2982de08d2b091bac56b59b2faa523a10e1378ad3cdd68e35b8eb74b3d https://github.com/typst/typst/releases/download/v${TYPST_VERSION}/typst-x86_64-unknown-linux-musl.tar.xz  /typst.tar.xz
 RUN mkdir /opt/typst && unar /typst.tar.xz -o /tmp/typst && mv /tmp/typst/**/* /opt/typst
 
 #unpack zellij
