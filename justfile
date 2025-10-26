@@ -14,27 +14,40 @@ _run name:
 _build_opt:
      {{podman}} build -t opt -f containerfiles/opt.Containerfile .
 
-_build name: (_build_opt)
+build_fedora:
+    just _build_opt 
+    just _build fedora
+
+build_ci_fedora:
+    just _build_opt 
+    just _build ci-fedora
+
+build_alpine:
+    just _build alpine 
+
+
+_build name: 
      {{podman}} build -t {{repo}}/{{name}} -f containerfiles/{{name}}.Containerfile .
 
 _push name:
     {{podman}} push {{repo}}/{{name}}
 
 
-build_and_push name: (_build name) (test name) (_push name)
-build_and_push_without_test name: (_build name)(_push name)
+build_and_push_alpine: (build_alpine) (_test "alpine") (_push "alpine")
+build_and_push_fedora: (build_fedora) (_test "fedora") (_push "feodra")
+build_and_push_ci_fedora: (build_ci_fedora) (_push "ci-fedora")
 
 
 # build and enter a container
-try name: (_build name) (_run name)
-
+try_feodra: (build_fedora) (_run "fedora")
+try_alpine: (build_alpine) (_run "alpine")
 
 # run a command in a new container
 _run_command name cmd:
     {{podman}} run --entrypoint 'bash' --rm {{repo}}/{{name}} -l -c '{{cmd}}'
 
 # build image and run some smoketests against it
-test name: (_build name) (_run_command name 'set -xeuo pipefail; for script in /examples/tests/*; do "$script"; done') 
+_test name: (_run_command name 'set -xeuo pipefail; for script in /examples/tests/*; do "$script"; done') 
 
 # clean up docker cache
 clear_docker_cache:
