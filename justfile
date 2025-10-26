@@ -34,7 +34,7 @@ _push name:
 
 
 build_and_push_alpine: (build_alpine) (_test "alpine") (_push "alpine")
-build_and_push_fedora: (build_fedora) (_test "fedora") (_push "feodra")
+build_and_push_fedora: (build_fedora) (_test "fedora") (_push "fedora")
 build_and_push_ci_fedora: (build_ci_fedora) (_push "ci-fedora")
 
 
