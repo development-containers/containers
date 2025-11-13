@@ -39,7 +39,7 @@ build_and_push_ci_fedora: (build_ci_fedora) (_push "ci-fedora")
 
 
 # build and enter a container
-try_feodra: (build_fedora) (_run "fedora")
+try_fedora: (build_fedora) (_run "fedora")
 try_alpine: (build_alpine) (_run "alpine")
 
 # run a command in a new container
