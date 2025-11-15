@@ -41,9 +41,18 @@ def x (user: string, repo: string) : any -> record {
     get_versions $user $repo $repo
 }
 
+def cue_version () : any -> string {
+    try {
+        cue version | lines | first | filter_version
+    } catch { |err|
+            print $"cue version resulted in error ($err.msg)"
+            "error"
+    }
+}
+
 let versions1 = [
     [ program     local                         latest]; 
-    [ cue     (cue version | lines | first | filter_version)      (github_version 'cue-lang/cue')]
+    [ cue     (cue_version)      (github_version 'cue-lang/cue')]
 ]
 
 let versions2 = [
