@@ -2,18 +2,18 @@ FROM registry.fedoraproject.org/fedora:42
 
 RUN dnf install -y unar
 
-ENV NUSHELL_VERSION=0.108.0
+ENV NUSHELL_VERSION=0.109.1
 ENV TYPST_VERSION=0.14.0
 ENV ZELLIJ_VERSION=0.41.2
-ENV CUELANG_VERSION=0.14.2
+ENV CUELANG_VERSION=0.15.1
 ENV GLEAM_VERSION=1.13.0
 ENV STARSHIP_VERSION=1.23.0
 ENV DENO_VERSION=2.5.1
 ENV ZOLA_VERSION=0.21.0
 ENV NICKEL_VERSION=1.14.0
 ENV TAPLO_VERSION=0.10.0
-ENV CARAPACE_VERSION=1.4.1
-ENV JUJUTSU_VERSION=0.34.0
+ENV CARAPACE_VERSION=1.5.5
+ENV JUJUTSU_VERSION=0.36.0
 ENV CROSS_VERSION=0.2.5
 ENV MPROCS_VERSION=0.7.2
 ENV REBAR_VERSION=3.24.0
@@ -21,7 +21,7 @@ ENV DIOXUS_VERSION=0.6.3
 ENV CARGO_AUDIT_VERSION=0.21.2
 ENV TINYMIST_VERSION=0.13.14
 ENV JDTLS_VERSION=1.49.0
-ENV K6_VERSION=1.3.0
+ENV K6_VERSION=1.4.2
 ENV JUST_LSP_VERSION=0.2.7
 
 
@@ -30,7 +30,7 @@ ADD --checksum=sha256:998cf9a5cfa09ef832d6c3656488ffd2c714b16f509a5d9d1a36bc2b97
 RUN mkdir /opt/just-lsp &&  unar /just-lsp.tar.gz -o /tmp/just-lsp/ && mv /tmp/just-lsp/**/* /opt/just-lsp
 
 #unpack k6
-ADD --checksum=sha256:84d26fc1f7bc03e02f2e016b3b1b20c032e05dfe461fca82de4e3a6ebe72ddbd https://github.com/grafana/k6/releases/download/v${K6_VERSION}/k6-v${K6_VERSION}-linux-amd64.tar.gz /k6.tar.gz
+ADD --checksum=sha256:c827501f510265db9c3313e4164d2585a97c7a3485ed440b93f7b1cfe6facd28 https://github.com/grafana/k6/releases/download/v${K6_VERSION}/k6-v${K6_VERSION}-linux-amd64.tar.gz /k6.tar.gz
 RUN mkdir /opt/k6 &&  unar /k6.tar.gz -o /tmp/k6/ && mv /tmp/k6/**/* /opt/k6
 
 # unpack tinymist
@@ -42,11 +42,11 @@ ADD --checksum=sha256:a3f9fb5921f5273d0f8fe4365b363fbad1bdc2e86991db3149b2d76f12
 RUN mkdir /opt/jdtls && unar /jdtls.tar.gz -o /opt/jdtls
 
 #unpack jujutsu
-ADD --checksum=sha256:1e8e1ede656fecba91ceb8248a76402a110017ad677d0ecfd1f2040f5543cfa3 https://github.com/jj-vcs/jj/releases/download/v${JUJUTSU_VERSION}/jj-v${JUJUTSU_VERSION}-x86_64-unknown-linux-musl.tar.gz /jj.tar.gz
+ADD --checksum=sha256:b9526754d35ee643dd7f91a927d0e5650563e1092ffa599765624a3f212277ab https://github.com/jj-vcs/jj/releases/download/v${JUJUTSU_VERSION}/jj-v${JUJUTSU_VERSION}-x86_64-unknown-linux-musl.tar.gz /jj.tar.gz
 RUN mkdir /opt/jujutsu && unar /jj.tar.gz -o /tmp/jujutsu && mv /tmp/jujutsu/**/* /opt/jujutsu
 
 # unpack nushell
-ADD --checksum=sha256:3a3695d3fbaae1553229e263143ee02359f703efbc982bb1b475d2769d4ff6d9 https://github.com/nushell/nushell/releases/download/${NUSHELL_VERSION}/nu-${NUSHELL_VERSION}-x86_64-unknown-linux-musl.tar.gz  /nu.tar.gz
+ADD --checksum=sha256:0822ed54621fc22c0e9c446df6e709f89d07f5e50a00a025c9a0ec0cc3e7d4ee https://github.com/nushell/nushell/releases/download/${NUSHELL_VERSION}/nu-${NUSHELL_VERSION}-x86_64-unknown-linux-musl.tar.gz  /nu.tar.gz
 RUN mkdir /opt/nushell && unar /nu.tar.gz -o /tmp/nu && mv /tmp/nu/**/* /opt/nushell
 
 #unpack typst
@@ -58,7 +58,7 @@ ADD --checksum=sha256:b1c321a817d8a5baf55c2798f6ac7495bba925d686d9877e9604a50784
 RUN mkdir /opt/zellij && unar /zellij.tar.xz -o /tmp/zellij && mv /tmp/zellij/* /opt/zellij
 
 # unpack cuelang
-ADD --checksum=sha256:de6bcd5a601ca53dde09de8e5f884a4bad23c91306f04ca6a6ce11dab48a8307 https://github.com/cue-lang/cue/releases/download/v${CUELANG_VERSION}/cue_v${CUELANG_VERSION}_linux_amd64.tar.gz /cue.tar.gz
+ADD --checksum=sha256:aa282261245e9ab0d65b17ec3c7207f5231600106f7b26fc0c2e158b3937ca3f https://github.com/cue-lang/cue/releases/download/v${CUELANG_VERSION}/cue_v${CUELANG_VERSION}_linux_amd64.tar.gz /cue.tar.gz
 RUN mkdir /opt/cuelang && unar /cue.tar.gz -o /tmp/cue && mv /tmp/cue/cue/* /opt/cuelang
 
 # unpack gleam
@@ -94,7 +94,7 @@ RUN mkdir /opt/taplo &&  unar /taplo.gz -o /opt/taplo/ && chmod +x /opt/taplo/ta
 
 
 #unpack carapace
-ADD --checksum=sha256:fad6a1aa31d021de3cc4389a1010ac160eae9dd8328aba68c489387e333062d0 https://github.com/carapace-sh/carapace-bin/releases/download/v${CARAPACE_VERSION}/carapace-bin_${CARAPACE_VERSION}_linux_amd64.tar.gz /carapace.tar.gz
+ADD --checksum=sha256:368ae1c53cc17289616fc7475b1208603db8ea08ab89423ad7161f5548030126 https://github.com/carapace-sh/carapace-bin/releases/download/v${CARAPACE_VERSION}/carapace-bin_${CARAPACE_VERSION}_linux_amd64.tar.gz /carapace.tar.gz
 RUN mkdir /opt/carapace &&  unar /carapace.tar.gz -o /tmp/carapace/ && mv /tmp/carapace/carapace/* /opt/carapace
 
 

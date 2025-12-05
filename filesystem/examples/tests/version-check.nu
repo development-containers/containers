@@ -56,6 +56,7 @@ let versions1 = [
 ]
 
 let versions2 = [
+    (x terror just-lsp)
     (x grafana k6)
     (x Myriad-Dreamin tinymist)
     (x LukeMathWalker cargo-chef)
