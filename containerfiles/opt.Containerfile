@@ -7,7 +7,7 @@ ENV TYPST_VERSION=0.14.0
 ENV ZELLIJ_VERSION=0.41.2
 ENV CUELANG_VERSION=0.15.1
 ENV GLEAM_VERSION=1.13.0
-ENV STARSHIP_VERSION=1.23.0
+ENV STARSHIP_VERSION=1.24.1
 ENV DENO_VERSION=2.5.1
 ENV ZOLA_VERSION=0.21.0
 ENV NICKEL_VERSION=1.14.0
@@ -17,9 +17,9 @@ ENV JUJUTSU_VERSION=0.36.0
 ENV CROSS_VERSION=0.2.5
 ENV MPROCS_VERSION=0.7.2
 ENV REBAR_VERSION=3.24.0
-ENV DIOXUS_VERSION=0.6.3
+ENV DIOXUS_VERSION=0.7.1
 ENV CARGO_AUDIT_VERSION=0.21.2
-ENV TINYMIST_VERSION=0.13.14
+ENV TINYMIST_VERSION=0.14.4
 ENV JDTLS_VERSION=1.49.0
 ENV K6_VERSION=1.4.2
 ENV JUST_LSP_VERSION=0.2.7
@@ -34,7 +34,7 @@ ADD --checksum=sha256:c827501f510265db9c3313e4164d2585a97c7a3485ed440b93f7b1cfe6
 RUN mkdir /opt/k6 &&  unar /k6.tar.gz -o /tmp/k6/ && mv /tmp/k6/**/* /opt/k6
 
 # unpack tinymist
-ADD --checksum=sha256:ff4cf78d93d413389dabe49d4afd651cc4fc37ef8dd64d2d950cdaa514f9649d https://github.com/Myriad-Dreamin/tinymist/releases/download/v${TINYMIST_VERSION}/tinymist-x86_64-unknown-linux-gnu.tar.gz /tinymist.tar.gz
+ADD --checksum=sha256:746bec8140903199a39f93f4d50a5588b9e7f3c8dbcf44d13f1381a5c2740b50 https://github.com/Myriad-Dreamin/tinymist/releases/download/v${TINYMIST_VERSION}/tinymist-x86_64-unknown-linux-gnu.tar.gz /tinymist.tar.gz
 RUN mkdir /opt/tinymist && unar /tinymist.tar.gz -o /tmp/tinymist && mv /tmp/tinymist/**/* /opt/tinymist
 
 # unpack JDTLS
@@ -66,7 +66,7 @@ ADD --checksum=sha256:8b372488e5ccaa54d8acc2feb9852c9e7916e480566049edd565caa1d8
 RUN mkdir /opt/gleam && unar /gleam.tar.gz -o /tmp/gleam && mv /tmp/gleam/* /opt/gleam
 
 # unpack starship
-ADD --checksum=sha256:8d06d2cc67aedd6316ff58ab679fb80cded0d85de1dcd5727df0633d35356d57 https://github.com/starship/starship/releases/download/v${STARSHIP_VERSION}/starship-x86_64-unknown-linux-musl.tar.gz /starship.tar.gz
+ADD --checksum=sha256:44a729c34aea5b0451fba49108cdc5ef6b1ae68db65e7623cc244a52efcd23d1 https://github.com/starship/starship/releases/download/v${STARSHIP_VERSION}/starship-x86_64-unknown-linux-musl.tar.gz /starship.tar.gz
 RUN mkdir /opt/starship && unar /starship.tar.gz -o /tmp/starship && mv /tmp/starship/* /opt/starship
 
 #unpack intelij
@@ -112,7 +112,7 @@ ADD --checksum=sha256:a486cefa6cb486971b97be321ea9dfc2e90c1979550295314a368f53fa
 RUN mkdir /opt/cross && unar /cross.tar.gz -o /tmp/cross/ && mv /tmp/cross/cross/* /opt/cross
 
 #unpack dioxus-cli
-ADD --checksum=sha256:2d2e205bad9715141019ec558e19874d3922c7803656e98ba4518c18a0e22196 https://github.com/DioxusLabs/dioxus/releases/download/v${DIOXUS_VERSION}/dx-x86_64-unknown-linux-gnu-v${DIOXUS_VERSION}.tar.gz /dioxus.tar.gz
+ADD --checksum=sha256:eae034c2ba5d6d200e843c35fccf0f3d705ea8078a1e69cdf0f064f67bec3e8c https://github.com/DioxusLabs/dioxus/releases/download/v${DIOXUS_VERSION}/dx-x86_64-unknown-linux-gnu.tar.gz /dioxus.tar.gz
 RUN mkdir /opt/dioxus &&  unar /dioxus.tar.gz -o /opt/dioxus/
 
 #unpack cargo-audit
