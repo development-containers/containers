@@ -65,7 +65,8 @@ let versions2 = [
     (x pvolok mprocs)
     (x jgm pandoc)
     (x XAMPPRocky tokei)
-    (get_versions eclipse-jdtls eclipse.jdt.ls jdtls)
+    # jdtls does nog have a version flag so running this just starts it and hangs forever
+    #(get_versions eclipse-jdtls eclipse.jdt.ls jdtls)
     (get_versions Wilfred difftastic difft)
     (x sharkdp bat)
     (x sharkdp hexyl)
