@@ -1,7 +1,7 @@
 repo := "ghcr.io/development-containers"
 podman := `bash -c ' [[ "$(podman --version)" =~ ^[a-zA-Z[:space:]]+[5-9].*$ ]] && echo "podman" || echo "docker"'`
 
-warn := if podman != "podman" {`echo "WARNING: Yikes! That's an old OLD operating system you go there. Please upgrade to something wiht podman 5. Falling back to docker." >&2`} else {""}
+warn := if podman != "podman" {`echo "WARNING: Yikes! That's an old OLD operating system you go there. Please upgrade to something with podman 5. Falling back to docker." >&2`} else {""}
 
 _default:
     @just --list
