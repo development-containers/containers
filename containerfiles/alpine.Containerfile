@@ -3,7 +3,7 @@ FROM alpine:edge
 RUN apk update && \
     apk upgrade && \
     apk add sqlite gleam typst 7zip \
-            nushell helix helix-tree-sitter-vendor \
+            nushell helix helix-tree-sitter-vendor lnav \
             curl git pijul deno rustup mprocs wget \
             just bottom zellij eza ripgrep fd python3 \
             bash difftastic openjdk21-jdk grep cue-cli docs \
