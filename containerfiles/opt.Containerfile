@@ -8,7 +8,7 @@ ENV ZELLIJ_VERSION=0.41.2
 ENV CUELANG_VERSION=0.15.1
 ENV GLEAM_VERSION=1.13.0
 ENV STARSHIP_VERSION=1.24.1
-ENV DENO_VERSION=2.5.1
+ENV DENO_VERSION=2.6.3
 ENV ZOLA_VERSION=0.21.0
 ENV NICKEL_VERSION=1.14.0
 ENV TAPLO_VERSION=0.10.0
@@ -75,7 +75,7 @@ RUN mkdir /opt/starship && unar /starship.tar.gz -o /tmp/starship && mv /tmp/sta
 # RUN mkdir /opt/intellij && unar /intellij.tar.gz -o /tmp/intellij && mv /tmp/intellij/**/* /opt/intellij
 
 #unpack deno
-ADD --checksum=sha256:bceddde4ff520f21c3767d893fe3d2d83df788346d3ad6f03d8abcd0392eb3ab https://github.com/denoland/deno/releases/download/v${DENO_VERSION}/deno-x86_64-unknown-linux-gnu.zip /deno.zip
+ADD --checksum=sha256:b3c24dc6f3982607896bd795fd6bcbdc53f3d11e8d8190b2a07fd1881eb1148a https://github.com/denoland/deno/releases/download/v${DENO_VERSION}/deno-x86_64-unknown-linux-gnu.zip /deno.zip
 RUN mkdir /opt/deno && unar /deno.zip -o /tmp/deno && mv /tmp/deno/* /opt/deno
 
 #unpack zola
