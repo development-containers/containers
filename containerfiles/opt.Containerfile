@@ -6,7 +6,7 @@ ENV NUSHELL_VERSION=0.109.1
 ENV TYPST_VERSION=0.14.0
 ENV ZELLIJ_VERSION=0.41.2
 ENV CUELANG_VERSION=0.15.1
-ENV GLEAM_VERSION=1.13.0
+ENV GLEAM_VERSION=1.14.0
 ENV STARSHIP_VERSION=1.24.1
 ENV DENO_VERSION=2.6.3
 ENV ZOLA_VERSION=0.21.0
@@ -62,7 +62,7 @@ ADD --checksum=sha256:aa282261245e9ab0d65b17ec3c7207f5231600106f7b26fc0c2e158b39
 RUN mkdir /opt/cuelang && unar /cue.tar.gz -o /tmp/cue && mv /tmp/cue/cue/* /opt/cuelang
 
 # unpack gleam
-ADD --checksum=sha256:8b372488e5ccaa54d8acc2feb9852c9e7916e480566049edd565caa1d8c74eec https://github.com/gleam-lang/gleam/releases/download/v${GLEAM_VERSION}/gleam-v${GLEAM_VERSION}-x86_64-unknown-linux-musl.tar.gz /gleam.tar.gz
+ADD --checksum=sha256:5dc66abbf3eb80f209f1c261ecfc44dc1404dd8ac503e483369d37182a4fcce8 https://github.com/gleam-lang/gleam/releases/download/v${GLEAM_VERSION}/gleam-v${GLEAM_VERSION}-x86_64-unknown-linux-musl.tar.gz /gleam.tar.gz
 RUN mkdir /opt/gleam && unar /gleam.tar.gz -o /tmp/gleam && mv /tmp/gleam/* /opt/gleam
 
 # unpack starship
