@@ -9,7 +9,7 @@ RUN apk update && \
             bash difftastic openjdk21-jdk grep cue-cli docs \
             zola nickel nickel-language-server starship taplo carapace jujutsu \
             bat erlang rebar3 inotify-tools litecli tokei hexyl age pandoc clang jdtls \
-            binaryen wasm-tools cargo-audit cue-cli
+            binaryen wasm-tools cargo-audit cue-cli go gopls
 # TODO: unar https://gitlab.alpinelinux.org/alpine/aports/-/issues/5846
 # TODO: wabt once out of testing
 
