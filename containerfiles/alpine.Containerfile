@@ -14,10 +14,11 @@ RUN apk update && \
 # TODO: wabt once out of testing
 
 
-RUN rustup-init -y && bash -lc 'rustup component add rust-analyzer'
 
 COPY ./filesystem/config /root/.config
 COPY ./filesystem/examples /examples
 
 ENV SHELL=nu
+RUN rustup-init -y && bash -lc 'rustup component add rust-analyzer'
+
 CMD [ "zellij"]
