@@ -9,7 +9,7 @@ RUN apk update && \
             bash difftastic openjdk21-jdk grep cue-cli docs \
             zola nickel nickel-language-server starship taplo carapace jujutsu \
             bat erlang rebar3 inotify-tools litecli tokei hexyl age pandoc clang jdtls \
-            binaryen wasm-tools cargo-audit cue-cli go gopls cue-cli cargo-audit cargo-chef 
+            binaryen wasm-tools cargo-audit cue-cli go gopls cue-cli cargo-audit cargo-chef tini
 # TODO: unar https://gitlab.alpinelinux.org/alpine/aports/-/issues/5846
 # TODO: wabt once out of testing
 
@@ -21,4 +21,4 @@ COPY ./filesystem/examples /examples
 ENV SHELL=nu
 RUN rustup-init -y && bash -lc 'rustup component add rust-analyzer'
 
-CMD [ "zellij"]
+CMD [ "tini", "zellij"]
