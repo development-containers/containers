@@ -20,6 +20,6 @@ COPY ./filesystem/examples /examples
 
 ENV SHELL=nu
 RUN rustup-init -y && bash -lc 'rustup component add rust-analyzer'
-RUN nix-channel --update && nix-channel --update
+RUN nix-channel --add https://nixos.org/channels/nixpkgs-unstable && nix-channel --update
 
 CMD [ "tini", "zellij"]
