@@ -4,7 +4,7 @@ RUN apk update && \
     apk upgrade && \
     apk add sqlite gleam typst 7zip \
             nushell helix helix-tree-sitter-vendor lnav \
-            curl git pijul deno rustup mprocs wget \
+            curl git pijul deno rustup mprocs wget htop\
             just bottom zellij eza ripgrep fd python3 \
             bash difftastic openjdk21-jdk grep cue-cli docs \
             zola nickel nickel-language-server starship taplo carapace jujutsu \
@@ -20,5 +20,6 @@ COPY ./filesystem/examples /examples
 
 ENV SHELL=nu
 RUN rustup-init -y && bash -lc 'rustup component add rust-analyzer'
+RUN nix-channel --update && nix-channel --update
 
 CMD [ "tini", "zellij"]
