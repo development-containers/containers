@@ -26,6 +26,7 @@ jobs:
       - name: Make some space
         run: |
           rm -fr /usr/share/dotnet /usr/local/lib/android /opt/ghc
+          find . -maxdepth 3 -type d -exec du -sh {} \; | sort -h
       - name: Log into registry 
         if: github.event_name != 'pull_request'
         uses: docker/login-action@343f7c4344506bcbf9b4de18042ae17996df046d # v3.0.0
