@@ -1,12 +1,12 @@
-FROM registry.fedoraproject.org/fedora:43
+FROM registry.fedoraproject.org/fedora:44
 
 RUN dnf install -y unar
 
-ENV NUSHELL_VERSION=0.109.1
-ENV TYPST_VERSION=0.14.0
+ENV NUSHELL_VERSION=0.112.2
+ENV TYPST_VERSION=0.14.2
 ENV ZELLIJ_VERSION=0.41.2
 ENV CUELANG_VERSION=0.15.1
-ENV GLEAM_VERSION=1.14.0
+ENV GLEAM_VERSION=1.16.0
 ENV STARSHIP_VERSION=1.24.1
 ENV DENO_VERSION=2.6.3
 ENV ZOLA_VERSION=0.21.0
@@ -37,20 +37,16 @@ RUN mkdir /opt/k6 &&  unar /k6.tar.gz -o /tmp/k6/ && mv /tmp/k6/**/* /opt/k6
 ADD --checksum=sha256:746bec8140903199a39f93f4d50a5588b9e7f3c8dbcf44d13f1381a5c2740b50 https://github.com/Myriad-Dreamin/tinymist/releases/download/v${TINYMIST_VERSION}/tinymist-x86_64-unknown-linux-gnu.tar.gz /tinymist.tar.gz
 RUN mkdir /opt/tinymist && unar /tinymist.tar.gz -o /tmp/tinymist && mv /tmp/tinymist/**/* /opt/tinymist
 
-# unpack JDTLS
-ADD --checksum=sha256:a3f9fb5921f5273d0f8fe4365b363fbad1bdc2e86991db3149b2d76f1265bcd7 https://www.eclipse.org/downloads/download.php?file=/jdtls/milestones/${JDTLS_VERSION}/jdt-language-server-${JDTLS_VERSION}-202507311558.tar.gz /jdtls.tar.gz
-RUN mkdir /opt/jdtls && unar /jdtls.tar.gz -o /opt/jdtls
-
 #unpack jujutsu
 ADD --checksum=sha256:b9526754d35ee643dd7f91a927d0e5650563e1092ffa599765624a3f212277ab https://github.com/jj-vcs/jj/releases/download/v${JUJUTSU_VERSION}/jj-v${JUJUTSU_VERSION}-x86_64-unknown-linux-musl.tar.gz /jj.tar.gz
 RUN mkdir /opt/jujutsu && unar /jj.tar.gz -o /tmp/jujutsu && mv /tmp/jujutsu/**/* /opt/jujutsu
 
 # unpack nushell
-ADD --checksum=sha256:0822ed54621fc22c0e9c446df6e709f89d07f5e50a00a025c9a0ec0cc3e7d4ee https://github.com/nushell/nushell/releases/download/${NUSHELL_VERSION}/nu-${NUSHELL_VERSION}-x86_64-unknown-linux-musl.tar.gz  /nu.tar.gz
+ADD --checksum=sha256:d9c0ba0938beed6148c8a354c45612c0979d7a787794b8dd13e866ca3b571375 https://github.com/nushell/nushell/releases/download/${NUSHELL_VERSION}/nu-${NUSHELL_VERSION}-x86_64-unknown-linux-musl.tar.gz  /nu.tar.gz
 RUN mkdir /opt/nushell && unar /nu.tar.gz -o /tmp/nu && mv /tmp/nu/**/* /opt/nushell
 
 #unpack typst
-ADD --checksum=sha256:99816d2982de08d2b091bac56b59b2faa523a10e1378ad3cdd68e35b8eb74b3d https://github.com/typst/typst/releases/download/v${TYPST_VERSION}/typst-x86_64-unknown-linux-musl.tar.xz  /typst.tar.xz
+ADD --checksum=sha256:a6044cbad2a954deb921167e257e120ac0a16b20339ec01121194ff9d394996d https://github.com/typst/typst/releases/download/v${TYPST_VERSION}/typst-x86_64-unknown-linux-musl.tar.xz  /typst.tar.xz
 RUN mkdir /opt/typst && unar /typst.tar.xz -o /tmp/typst && mv /tmp/typst/**/* /opt/typst
 
 #unpack zellij
@@ -62,7 +58,7 @@ ADD --checksum=sha256:aa282261245e9ab0d65b17ec3c7207f5231600106f7b26fc0c2e158b39
 RUN mkdir /opt/cuelang && unar /cue.tar.gz -o /tmp/cue && mv /tmp/cue/cue/* /opt/cuelang
 
 # unpack gleam
-ADD --checksum=sha256:5dc66abbf3eb80f209f1c261ecfc44dc1404dd8ac503e483369d37182a4fcce8 https://github.com/gleam-lang/gleam/releases/download/v${GLEAM_VERSION}/gleam-v${GLEAM_VERSION}-x86_64-unknown-linux-musl.tar.gz /gleam.tar.gz
+ADD --checksum=sha256:1ca1183719a32c2cfb15a845ff6192bd2cb4eaf4d8913bfad9662349f8d9a7ff https://github.com/gleam-lang/gleam/releases/download/v${GLEAM_VERSION}/gleam-v${GLEAM_VERSION}-x86_64-unknown-linux-musl.tar.gz /gleam.tar.gz
 RUN mkdir /opt/gleam && unar /gleam.tar.gz -o /tmp/gleam && mv /tmp/gleam/* /opt/gleam
 
 # unpack starship
@@ -125,6 +121,9 @@ ENV CARGO_CHEF_VERSION=0.1.71
 ADD --checksum=sha256:0ac1c3668f81dcbc8867e3ba41e939d98ff4a3f4ce1aeda795da138685618815 https://github.com/LukeMathWalker/cargo-chef/releases/download/v${CARGO_CHEF_VERSION}/cargo-chef-x86_64-unknown-linux-gnu.tar.gz /cargo-chef.tar.gz
 RUN mkdir /opt/cargo-chef &&  unar /cargo-chef.tar.gz -o /tmp/cargo-chef/ && mv /tmp/cargo-chef/* /opt/cargo-chef
 
+# unpack JDTLS
+ADD --checksum=sha256:a3f9fb5921f5273d0f8fe4365b363fbad1bdc2e86991db3149b2d76f1265bcd7 https://www.eclipse.org/downloads/download.php?file=/jdtls/milestones/${JDTLS_VERSION}/jdt-language-server-${JDTLS_VERSION}-202507311558.tar.gz /jdtls.tar.gz
+RUN mkdir /opt/jdtls && unar /jdtls.tar.gz -o /opt/jdtls
 
 
 #get red
